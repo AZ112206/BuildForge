@@ -1,0 +1,315 @@
+/* ==========================================
+   Kid-In Design System: Dual-Theme Engine
+   ========================================== */
+
+/* 1. Default: Original Light Theme Variables */
+:root {
+  --primary-indigo: #6366F1;     
+  --indigo-hover: #4F46E5;       
+  --mint-accent: #10B981;        
+  
+  --bg-canvas: #F8FAFC;          
+  --card-bg: #FFFFFF;            
+  --card-bg-rgb: 255, 255, 255;
+  --border-subtle: #E2E8F0;      
+  --text-main: #1E293B;          
+  --text-muted: #64748B;         
+  --card-hover-shadow: rgba(99, 102, 241, 0.18);
+
+  /* Light Mesh Gradients */
+  --mesh-1: rgba(99, 102, 241, 0.35);
+  --mesh-2: rgba(16, 185, 129, 0.25);
+  --mesh-3: rgba(79, 70, 229, 0.2);
+}
+
+/* 2. New Dark Mode Theme Variables */
+[data-theme="dark"] {
+  --primary-indigo: #818CF8;
+  --indigo-hover: #6366F1;
+  --mint-accent: #34D399;
+
+  --bg-canvas: #090D16;
+  --card-bg: #111827;
+  --card-bg-rgb: 17, 24, 39;
+  --border-subtle: #1F2937;
+  --text-main: #F9FAFB;
+  --text-muted: #9CA3AF;
+  --card-hover-shadow: rgba(129, 140, 248, 0.25);
+
+  /* Dark Mesh Gradients */
+  --mesh-1: rgba(99, 102, 241, 0.25);
+  --mesh-2: rgba(16, 185, 129, 0.15);
+  --mesh-3: rgba(79, 70, 229, 0.22);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --primary-indigo: #818CF8;
+    --indigo-hover: #6366F1;
+    --mint-accent: #34D399;
+
+    --bg-canvas: #090D16;
+    --card-bg: #111827;
+    --card-bg-rgb: 17, 24, 39;
+    --border-subtle: #1F2937;
+    --text-main: #F9FAFB;
+    --text-muted: #9CA3AF;
+    --card-hover-shadow: rgba(129, 140, 248, 0.25);
+
+    --mesh-1: rgba(99, 102, 241, 0.25);
+    --mesh-2: rgba(16, 185, 129, 0.15);
+    --mesh-3: rgba(79, 70, 229, 0.22);
+  }
+}
+
+/* ==========================================
+   Core Layout & Vista Mesh Background
+   ========================================== */
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  background-color: var(--bg-canvas);
+  background-image: 
+    radial-gradient(at 15% 15%, var(--mesh-1) 0px, transparent 55%),
+    radial-gradient(at 85% 85%, var(--mesh-2) 0px, transparent 55%),
+    radial-gradient(at 50% 50%, var(--mesh-3) 0px, transparent 70%);
+  background-attachment: fixed;
+  transition: background-color 0.3s ease;
+}
+
+/* The Central Floating Frosted Glass Box */
+.signup-container {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  padding: 40px;
+  background: rgba(var(--card-bg-rgb), 0.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 32px;
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.35), 
+    0 0 0 1px var(--border-subtle);
+  z-index: 10;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* Header Text Layout */
+.signup-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.signup-header h1 {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.signup-header p {
+  color: var(--text-muted);
+  font-size: 15px;
+  margin: 0;
+}
+
+/* Role Cards Grid Container */
+.role-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+/* Individual Role Card Style */
+.role-card {
+  position: relative;
+  background-color: var(--card-bg);
+  border-radius: 20px;
+  padding: 20px 24px;
+  cursor: pointer;
+  overflow: hidden;
+  border: 2px solid var(--border-subtle);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  z-index: 1;
+}
+
+.role-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px var(--card-hover-shadow);
+}
+
+/* The Rotating Clockwise Glow Border on Hover */
+.role-card::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 22px;
+  background: conic-gradient(
+    from 0deg at 50% 50%, 
+    transparent 0%, 
+    transparent 50%, 
+    var(--mint-accent) 75%, 
+    var(--primary-indigo) 100%
+  );
+  z-index: -2;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.role-card:hover::before {
+  opacity: 1;
+  animation: clockwiseGlow 3s linear infinite;
+}
+
+@keyframes clockwiseGlow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.role-card::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  background-color: var(--card-bg);
+  border-radius: 18px;
+  z-index: -1;
+  transition: background-color 0.3s ease;
+}
+
+.role-icon {
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background-color: var(--border-subtle);
+  border-radius: 14px;
+  flex-shrink: 0;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.role-content h3 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0 0 4px 0;
+}
+
+.role-content p {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* Selected State */
+.role-card.selected {
+  border-color: var(--primary-indigo);
+  background-color: rgba(99, 102, 241, 0.1);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+}
+
+.role-card.selected::before {
+  opacity: 0;
+}
+
+.role-card.selected .role-icon {
+  background-color: var(--primary-indigo);
+  color: #FFFFFF;
+}
+
+/* The Full Pill-Shaped Action Button */
+.pill-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-indigo);
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 16px 32px;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3);
+}
+
+.pill-button:hover:not(:disabled) {
+  background-color: var(--indigo-hover);
+  box-shadow: 0 6px 18px rgba(99, 102, 241, 0.4);
+}
+
+.pill-button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.pill-button:disabled {
+  background-color: var(--border-subtle);
+  color: var(--text-muted);
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ==========================================
+   Theme Toggle Floating Button (FAB)
+   ========================================== */
+
+.theme-toggle-fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: var(--card-bg);
+  border: 2px solid var(--border-subtle);
+  color: var(--text-main);
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Theme toggle hover behavior */
+.theme-toggle-fab:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+}
+
+[data-theme="light"] .theme-toggle-fab:hover {
+  background-color: var(--primary-indigo);
+  border-color: var(--primary-indigo);
+  color: #FFFFFF;
+  box-shadow: 0 10px 25px rgba(99, 102, 241, 0.35);
+}
+
+[data-theme="dark"] .theme-toggle-fab:hover {
+  background-color: var(--mint-accent);
+  border-color: var(--mint-accent);
+  color: #FFFFFF;
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+}
+
+.theme-toggle-fab:active {
+  transform: scale(0.95);
+}
