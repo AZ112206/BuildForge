@@ -1,63 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kid-In - Choose Your Role</title>
-    <!-- Link to the unified stylesheet -->
-    <link rel="stylesheet" href="Sign Up Pt 1.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kid-In | Parent Verification</title>
+  <link rel="stylesheet" href="Sign Up Pt 2 Parent.css" />
 </head>
 <body>
+  <button id="theme-toggle-btn" class="theme-toggle-fab" aria-label="Toggle Dark/Light Mode">
+    <span id="theme-icon">🌙</span>
+  </button>
 
-    <!-- Floating Theme Toggle Button (Bottom Right Corner) -->
-    <button id="theme-toggle-btn" class="theme-toggle-fab" aria-label="Toggle Dark/Light Mode">
-        <span id="theme-icon">🌙</span>
-    </button>
-
-    <!-- The Central Frosted Glass Container -->
-    <div class="signup-container">
-        
-        <!-- Header Section -->
-        <div class="signup-header">
-            <h1>Join Kid-In</h1>
-            <p>Select your role to start building your creative future.</p>
-        </div>
-
-        <!-- Role Selection Cards Grid -->
-        <div class="role-grid">
-            
-            <div class="role-card" data-role="student">
-                <div class="role-icon">🚀</div>
-                <div class="role-content">
-                    <h3>Student / Creator</h3>
-                    <p>Build your skill tree, share projects, and collaborate.</p>
-                </div>
-            </div>
-
-            <div class="role-card" data-role="parent">
-                <div class="role-icon">🛡️</div>
-                <div class="role-content">
-                    <h3>Parent / Guardian</h3>
-                    <p>Manage and protect a young creator's portfolio safely.</p>
-                </div>
-            </div>
-
-            <div class="role-card" data-role="teacher">
-                <div class="role-icon">🎓</div>
-                <div class="role-content">
-                    <h3>Teacher / Mentor</h3>
-                    <p>Support student teams and share your career origin story.</p>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Action Button (Disabled by default) -->
-        <button id="next-step-btn" class="pill-button" disabled>Next Step</button>
-
+  <div class="signup-container">
+    <div class="signup-header">
+      <h1>Adult Legal Verification</h1>
+      <p>Required for family account security and child protection.</p>
     </div>
 
-    <!-- Link to the JavaScript logic -->
-    <script src="Sign Up Pt 1.js"></script>
+    <form id="parent-legal-form">
+      <div class="form-row">
+        <div class="form-group prefix-group">
+          <label for="prefix">Prefix</label>
+          <select id="prefix" class="form-input">
+            <option value="">--</option>
+            <option value="Mr">Mr.</option>
+            <option value="Ms">Ms.</option>
+            <option value="Mrs">Mrs.</option>
+            <option value="Dr">Dr.</option>
+            <option value="Mx">Mx.</option>
+          </select>
+        </div>
+
+        <div class="form-group flex-grow">
+          <label for="first-name">First Legal Name *</label>
+          <input type="text" id="first-name" class="form-input" required placeholder="e.g., Jane" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group flex-grow">
+          <label for="middle-name">Middle Name (Optional)</label>
+          <input type="text" id="middle-name" class="form-input" placeholder="e.g., Marie" />
+        </div>
+
+        <div class="form-group flex-grow">
+          <label for="last-name">Last Legal Name *</label>
+          <input type="text" id="last-name" class="form-input" required placeholder="e.g., Doe" />
+        </div>
+
+        <div class="form-group suffix-group">
+          <label for="suffix">Suffix</label>
+          <select id="suffix" class="form-input">
+            <option value="">--</option>
+            <option value="Jr">Jr.</option>
+            <option value="Sr">Sr.</option>
+            <option value="III">III</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group flex-grow">
+          <label for="dob">Date of Birth *</label>
+          <input type="date" id="dob" class="form-input" required />
+          <span id="age-error" class="error-text" style="display:none; color:var(--mint-accent);">You must be 18+ to register.</span>
+        </div>
+
+        <div class="form-group flex-grow">
+          <label for="gender">Gender *</label>
+          <select id="gender" class="form-input" required>
+            <option value="">Select option</option>
+            <option value="female">Female</option>
+            <option value="male">Male</option>
+            <option value="non-binary">Non-binary</option>
+            <option value="prefer-not-to-say">Prefer not to say</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="submit" id="parent-submit-btn" class="pill-button" disabled>Proceed to Child Link</button>
+    </form>
+  </div>
+
+  <script src="Sign Up Pt 2 Parent.js"></script>
 </body>
 </html>

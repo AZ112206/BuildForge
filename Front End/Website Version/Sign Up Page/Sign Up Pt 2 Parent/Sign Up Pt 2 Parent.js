@@ -1,84 +1,106 @@
 document.addEventListener("DOMContentLoaded", () => {
-  
-  // ==========================================
-  // 1. Role Selection Logic
-  // ==========================================
-  const roleCards = document.querySelectorAll(".role-card");
-  const nextButton = document.getElementById("next-step-btn");
-  let selectedRole = null;
-
-  roleCards.forEach((card) => {
-    card.addEventListener("click", () => {
-      // Clear previous selection
-      roleCards.forEach((c) => c.classList.remove("selected"));
-      
-      // Highlight new selection
-      card.classList.add("selected");
-      selectedRole = card.getAttribute("data-role");
-      
-      // Unlock the button
-      if (nextButton) {
-        nextButton.disabled = false;
-      }
-    });
-  });
-
-  if (nextButton) {
-    nextButton.addEventListener("click", () => {
-      if (!selectedRole) return;
-      
-      // Save for Part 2
-      sessionStorage.setItem("kidInUserRole", selectedRole);
-      console.log(`Moving forward to Part 2 with role: ${selectedRole}`);
-      
-      // Next page transition (uncomment when Part 2 is ready)
-      // window.location.href = "Sign Up Pt 2.html"; 
-    });
-  }
-
-  // ==========================================
-  // 2. Theme Toggle Logic
-  // ==========================================
+  const form = document.getElementById("parent-legal-form");
+  const firstNameInput = document.getElementById("first-name");
+  const lastNameInput = document.getElementById("last-name");
+  const dobInput = document.getElementById("dob");
+  const genderSelect = document.getElementById("gender");
+  const submitBtn = document.getElementById("parent-submit-btn");
+  const ageErrorSpan = document.getElementById("age-error");
   const themeToggleBtn = document.getElementById("theme-toggle-btn");
   const themeIcon = document.getElementById("theme-icon");
   const htmlElement = document.documentElement;
 
-  // Check saved preferences or system defaults on load
-  const savedTheme = localStorage.getItem("kidInTheme");
-  if (savedTheme) {
-    htmlElement.setAttribute("data-theme", savedTheme);
-    updateThemeIcon(savedTheme);
-  } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-    updateThemeIcon("dark");
-  }
+  function validateAge(dobString) {
+    const dob = new Date(dobString);
+    const today = new Date();
 
-  // Handle manual toggle clicks
-  themeToggleBtn.addEventListener("click", () => {
-    const currentTheme = htmlElement.getAttribute("data-theme");
-    let newTheme = "dark";
+    let age = today.getFullYear() - dob.getFullYear();
+    const monthDiff = today.getMonth() - dob.getMonth();
 
-    if (currentTheme === "dark") {
-      newTheme = "light";
-    } else if (currentTheme === "light") {
-      newTheme = "dark";
-    } else {
-      // Fallback if null, match current OS state and flip it
-      newTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "dark";
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+      age--;
     }
 
-    // Apply the theme and save it
-    htmlElement.setAttribute("data-theme", newTheme);
-    localStorage.setItem("kidInTheme", newTheme);
-    updateThemeIcon(newTheme);
+    return age;
+  }
+
+  function updateThemeIcon(theme) {
+    if (!themeIcon) return;
+    themeIcon.textContent = theme === "dark" ? "☀️" : "🌙";
+  }
+
+  function applySavedTheme() {
+    const savedTheme = localStorage.getItem("kidInTheme");
+    const preferredTheme = savedTheme || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    htmlElement.setAttribute("data-theme", preferredTheme);
+    updateThemeIcon(preferredTheme);
+  }
+
+  function checkFormValidity() {
+    const firstName = firstNameInput.value.trim();
+    const lastName = lastNameInput.value.trim();
+    const dobValue = dobInput.value;
+    const genderValue = genderSelect.value;
+
+    let isValid = true;
+
+    if (!firstName || !lastName || !dobValue || !genderValue) {
+      isValid = false;
+    }
+
+    if (dobValue) {
+      const age = validateAge(dobValue);
+      if (age < 18) {
+        ageErrorSpan.style.display = "block";
+        dobInput.classList.add("error");
+        isValid = false;
+      } else {
+        ageErrorSpan.style.display = "none";
+        dobInput.classList.remove("error");
+      }
+    } else {
+      ageErrorSpan.style.display = "none";
+    }
+
+    submitBtn.disabled = !isValid;
+  }
+
+  if (themeToggleBtn && themeIcon) {
+    applySavedTheme();
+
+    themeToggleBtn.addEventListener("click", () => {
+      const currentTheme = htmlElement.getAttribute("data-theme") || "light";
+      const nextTheme = currentTheme === "dark" ? "light" : "dark";
+
+      htmlElement.setAttribute("data-theme", nextTheme);
+      localStorage.setItem("kidInTheme", nextTheme);
+      updateThemeIcon(nextTheme);
+    });
+  }
+
+  [firstNameInput, lastNameInput, dobInput, genderSelect].forEach((input) => {
+    input.addEventListener("input", checkFormValidity);
+    input.addEventListener("change", checkFormValidity);
   });
 
-  // Update the moon/sun icon based on current state
-  function updateThemeIcon(theme) {
-    if (theme === "dark") {
-      themeIcon.textContent = "☀️"; // Sun icon in dark mode
-    } else {
-      themeIcon.textContent = "🌙"; // Moon icon in light mode
-    }
-  }
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
 
+    const parentData = {
+      prefix: document.getElementById("prefix").value,
+      firstName: firstNameInput.value.trim(),
+      middleName: document.getElementById("middle-name").value.trim(),
+      lastName: lastNameInput.value.trim(),
+      suffix: document.getElementById("suffix").value,
+      dob: dobInput.value,
+      gender: genderSelect.value,
+      role: "parent",
+      verificationStatus: "pending_child_link",
+      createdAt: new Date().toISOString()
+    };
+
+    sessionStorage.setItem("kidInUserRole", "parent");
+    sessionStorage.setItem("kidInParentLegalData", JSON.stringify(parentData));
+    console.log("Parent legal data captured securely:", parentData);
+  });
 });
