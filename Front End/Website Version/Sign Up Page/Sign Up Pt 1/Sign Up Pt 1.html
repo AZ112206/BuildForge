@@ -1,28 +1,63 @@
-<div class="role-grid">
-  <div class="role-card" data-role="student">
-    <div class="role-icon">🚀</div>
-    <div>
-      <h3>Student / Creator</h3>
-      <p>Build your skill tree and collaborate on projects.</p>
-    </div>
-  </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kid-In - Choose Your Role</title>
+    <!-- Link to the unified stylesheet -->
+    <link rel="stylesheet" href="Sign Up Pt 1.css">
+</head>
+<body>
 
-  <div class="role-card" data-role="parent">
-    <div class="role-icon">🛡️</div>
-    <div>
-      <h3>Parent / Guardian</h3>
-      <p>Manage and protect a young creator's portfolio.</p>
-    </div>
-  </div>
+    <!-- Floating Theme Toggle Button (Bottom Right Corner) -->
+    <button id="theme-toggle-btn" class="theme-toggle-fab" aria-label="Toggle Dark/Light Mode">
+        <span id="theme-icon">🌙</span>
+    </button>
 
-  <div class="role-card" data-role="teacher">
-    <div class="role-icon">🎓</div>
-    <div>
-      <h3>Teacher / Mentor</h3>
-      <p>Support student teams and share your career origin story.</p>
-    </div>
-  </div>
-</div>
+    <!-- The Central Frosted Glass Container -->
+    <div class="signup-container">
+        
+        <!-- Header Section -->
+        <div class="signup-header">
+            <h1>Join Kid-In</h1>
+            <p>Select your role to start building your creative future.</p>
+        </div>
 
-<!-- The Electric Indigo Pill Button -->
-<button id="next-step-btn" class="pill-button" disabled>Next Step</button>
+        <!-- Role Selection Cards Grid -->
+        <div class="role-grid">
+            
+            <div class="role-card" data-role="student">
+                <div class="role-icon">🚀</div>
+                <div class="role-content">
+                    <h3>Student / Creator</h3>
+                    <p>Build your skill tree, share projects, and collaborate.</p>
+                </div>
+            </div>
+
+            <div class="role-card" data-role="parent">
+                <div class="role-icon">🛡️</div>
+                <div class="role-content">
+                    <h3>Parent / Guardian</h3>
+                    <p>Manage and protect a young creator's portfolio safely.</p>
+                </div>
+            </div>
+
+            <div class="role-card" data-role="teacher">
+                <div class="role-icon">🎓</div>
+                <div class="role-content">
+                    <h3>Teacher / Mentor</h3>
+                    <p>Support student teams and share your career origin story.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Action Button (Disabled by default) -->
+        <button id="next-step-btn" class="pill-button" disabled>Next Step</button>
+
+    </div>
+
+    <!-- Link to the JavaScript logic -->
+    <script src="Sign Up Pt 1.js"></script>
+</body>
+</html>
