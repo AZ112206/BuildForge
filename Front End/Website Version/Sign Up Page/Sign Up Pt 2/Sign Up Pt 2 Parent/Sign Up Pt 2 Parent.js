@@ -412,7 +412,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (backBtn) {
     backBtn.addEventListener("click", () => {
-      window.location.href = "../Sign Up Pt 1/Sign Up Pt 1.html";
+      window.location.href = "../../Sign Up Pt 1/Sign Up Pt 1.html";
     });
   }
 

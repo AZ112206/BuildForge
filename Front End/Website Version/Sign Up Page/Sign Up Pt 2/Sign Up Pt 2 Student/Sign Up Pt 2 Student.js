@@ -412,7 +412,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (backBtn) {
     backBtn.addEventListener("click", () => {
-      window.location.href = "../Sign Up Pt 1/Sign Up Pt 1.html";
+      window.location.href = "../../Sign Up Pt 1/Sign Up Pt 1.html";
     });
   }
 
@@ -436,7 +436,7 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const parentData = {
+    const studentData = {
       prefix: document.getElementById("prefix").value,
       firstName: firstNameInput.value.trim(),
       middleName: document.getElementById("middle-name").value.trim(),
@@ -445,13 +445,13 @@ document.addEventListener("DOMContentLoaded", () => {
       dob: dobInput.value,
       countryOfOrigin: countryOriginInput.value,
       gender: genderSelect.value,
-      role: "parent",
-      verificationStatus: "pending_child_link",
+      role: "student",
+      verificationStatus: "pending_parent_link",
       createdAt: new Date().toISOString()
     };
 
-    sessionStorage.setItem("kidInUserRole", "parent");
-    sessionStorage.setItem("kidInParentLegalData", JSON.stringify(parentData));
-    console.log("Parent legal data captured securely:", parentData);
+    sessionStorage.setItem("kidInUserRole", "student");
+    sessionStorage.setItem("kidInStudentLegalData", JSON.stringify(studentData));
+    console.log("Student legal data captured securely:", studentData);
   });
 });
