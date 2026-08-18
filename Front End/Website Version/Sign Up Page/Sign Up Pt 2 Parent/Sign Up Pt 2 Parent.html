@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kid-In | Parent Verification</title>
+  <title>Kid-In | Parent Sign Up</title>
   <link rel="stylesheet" href="Sign Up Pt 2 Parent.css" />
 </head>
 <body>
@@ -13,72 +13,89 @@
 
   <div class="signup-container">
     <div class="signup-header">
-      <h1>Adult Legal Verification</h1>
+      <h1>Parent Sign Up</h1>
       <p>Required for family account security and child protection.</p>
     </div>
 
     <form id="parent-legal-form">
-      <div class="form-row">
-        <div class="form-group prefix-group">
-          <label for="prefix">Prefix</label>
-          <select id="prefix" class="form-input">
-            <option value="">--</option>
-            <option value="Mr">Mr.</option>
-            <option value="Ms">Ms.</option>
-            <option value="Mrs">Mrs.</option>
-            <option value="Dr">Dr.</option>
-            <option value="Mx">Mx.</option>
-          </select>
+      <fieldset class="form-section">
+        <legend>Legal Name</legend>
+
+        <div class="form-row">
+          <div class="form-group prefix-group">
+            <label for="prefix">Prefix</label>
+            <select id="prefix" class="form-input">
+              <option value="">--</option>
+              <option value="Mr">Mr.</option>
+              <option value="Ms">Ms.</option>
+              <option value="Mrs">Mrs.</option>
+              <option value="Dr">Dr.</option>
+              <option value="Mx">Mx.</option>
+            </select>
+          </div>
+
+          <div class="form-group flex-grow">
+            <label for="first-name">First Legal Name *</label>
+            <input type="text" id="first-name" class="form-input" required placeholder="e.g., Jane" />
+          </div>
         </div>
 
-        <div class="form-group flex-grow">
-          <label for="first-name">First Legal Name *</label>
-          <input type="text" id="first-name" class="form-input" required placeholder="e.g., Jane" />
+        <div class="form-row">
+          <div class="form-group flex-grow">
+            <label for="middle-name">Middle Name (Optional)</label>
+            <input type="text" id="middle-name" class="form-input" placeholder="e.g., Marie" />
+          </div>
+
+          <div class="form-group flex-grow">
+            <label for="last-name">Last Legal Name *</label>
+            <input type="text" id="last-name" class="form-input" required placeholder="e.g., Doe" />
+          </div>
+
+          <div class="form-group suffix-group">
+            <label for="suffix">Suffix</label>
+            <select id="suffix" class="form-input">
+              <option value="">--</option>
+              <option value="Jr">Jr.</option>
+              <option value="Sr">Sr.</option>
+              <option value="III">III</option>
+            </select>
+          </div>
         </div>
+      </fieldset>
+
+      <fieldset class="form-section">
+        <legend>Birthday</legend>
+
+        <div class="form-row">
+          <div class="form-group flex-grow">
+            <label for="dob">Date of Birth *</label>
+            <input type="date" id="dob" class="form-input" required />
+            <span id="age-error" class="error-text" style="display:none; color:var(--mint-accent);">You must be 18+ to register.</span>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="form-section">
+        <legend>Gender</legend>
+
+        <div class="form-row">
+          <div class="form-group flex-grow">
+            <label for="gender">Gender *</label>
+            <select id="gender" class="form-input" required>
+              <option value="">Select option</option>
+              <option value="female">Female</option>
+              <option value="male">Male</option>
+              <option value="non-binary">Non-binary</option>
+              <option value="prefer-not-to-say">Prefer not to say</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="form-actions">
+        <button type="button" id="back-btn" class="pill-button pill-button-mint">Back</button>
+        <button type="submit" id="parent-submit-btn" class="pill-button pill-button-indigo" disabled>Next</button>
       </div>
-
-      <div class="form-row">
-        <div class="form-group flex-grow">
-          <label for="middle-name">Middle Name (Optional)</label>
-          <input type="text" id="middle-name" class="form-input" placeholder="e.g., Marie" />
-        </div>
-
-        <div class="form-group flex-grow">
-          <label for="last-name">Last Legal Name *</label>
-          <input type="text" id="last-name" class="form-input" required placeholder="e.g., Doe" />
-        </div>
-
-        <div class="form-group suffix-group">
-          <label for="suffix">Suffix</label>
-          <select id="suffix" class="form-input">
-            <option value="">--</option>
-            <option value="Jr">Jr.</option>
-            <option value="Sr">Sr.</option>
-            <option value="III">III</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group flex-grow">
-          <label for="dob">Date of Birth *</label>
-          <input type="date" id="dob" class="form-input" required />
-          <span id="age-error" class="error-text" style="display:none; color:var(--mint-accent);">You must be 18+ to register.</span>
-        </div>
-
-        <div class="form-group flex-grow">
-          <label for="gender">Gender *</label>
-          <select id="gender" class="form-input" required>
-            <option value="">Select option</option>
-            <option value="female">Female</option>
-            <option value="male">Male</option>
-            <option value="non-binary">Non-binary</option>
-            <option value="prefer-not-to-say">Prefer not to say</option>
-          </select>
-        </div>
-      </div>
-
-      <button type="submit" id="parent-submit-btn" class="pill-button" disabled>Proceed to Child Link</button>
     </form>
   </div>
 

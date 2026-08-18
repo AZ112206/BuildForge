@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const dobInput = document.getElementById("dob");
   const genderSelect = document.getElementById("gender");
   const submitBtn = document.getElementById("parent-submit-btn");
+  const backBtn = document.getElementById("back-btn");
   const ageErrorSpan = document.getElementById("age-error");
   const themeToggleBtn = document.getElementById("theme-toggle-btn");
   const themeIcon = document.getElementById("theme-icon");
@@ -75,6 +76,12 @@ document.addEventListener("DOMContentLoaded", () => {
       htmlElement.setAttribute("data-theme", nextTheme);
       localStorage.setItem("kidInTheme", nextTheme);
       updateThemeIcon(nextTheme);
+    });
+  }
+
+  if (backBtn) {
+    backBtn.addEventListener("click", () => {
+      window.location.href = "../Sign Up Pt 1/Sign Up Pt 1.html";
     });
   }
 
