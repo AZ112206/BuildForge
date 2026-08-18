@@ -7,6 +7,10 @@
   <link rel="stylesheet" href="Sign Up Pt 2 Parent.css" />
 </head>
 <body>
+  <button id="transparency-toggle-btn" class="transparency-toggle-fab" aria-label="Toggle Solid/Transparent Mode">
+    <span id="transparency-icon">💎</span>
+  </button>
+
   <button id="theme-toggle-btn" class="theme-toggle-fab" aria-label="Toggle Dark/Light Mode">
     <span id="theme-icon">🌙</span>
   </button>
@@ -23,15 +27,22 @@
 
         <div class="form-row">
           <div class="form-group prefix-group">
-            <label for="prefix">Prefix</label>
-            <select id="prefix" class="form-input">
-              <option value="">--</option>
-              <option value="Mr">Mr.</option>
-              <option value="Ms">Ms.</option>
-              <option value="Mrs">Mrs.</option>
-              <option value="Dr">Dr.</option>
-              <option value="Mx">Mx.</option>
-            </select>
+            <label for="prefix-trigger">Prefix</label>
+            <div class="custom-select" data-target-input="prefix">
+              <button type="button" id="prefix-trigger" class="custom-select-trigger form-input" aria-haspopup="listbox" aria-expanded="false">
+                <span class="custom-select-value">--</span>
+                <span class="custom-select-chevron" aria-hidden="true">&#9662;</span>
+              </button>
+              <div class="custom-select-menu" role="listbox">
+                <button type="button" class="custom-select-option" data-value="">--</button>
+                <button type="button" class="custom-select-option" data-value="Mr">Mr.</button>
+                <button type="button" class="custom-select-option" data-value="Ms">Ms.</button>
+                <button type="button" class="custom-select-option" data-value="Mrs">Mrs.</button>
+                <button type="button" class="custom-select-option" data-value="Dr">Dr.</button>
+                <button type="button" class="custom-select-option" data-value="Mx">Mx.</button>
+              </div>
+              <input type="hidden" id="prefix" value="" />
+            </div>
           </div>
 
           <div class="form-group flex-grow">
@@ -52,13 +63,29 @@
           </div>
 
           <div class="form-group suffix-group">
-            <label for="suffix">Suffix</label>
-            <select id="suffix" class="form-input">
-              <option value="">--</option>
-              <option value="Jr">Jr.</option>
-              <option value="Sr">Sr.</option>
-              <option value="III">III</option>
-            </select>
+            <label for="suffix-trigger">Suffix</label>
+            <div class="custom-select" data-target-input="suffix">
+              <button type="button" id="suffix-trigger" class="custom-select-trigger form-input" aria-haspopup="listbox" aria-expanded="false">
+                <span class="custom-select-value">--</span>
+                <span class="custom-select-chevron" aria-hidden="true">&#9662;</span>
+              </button>
+              <div class="custom-select-menu" role="listbox">
+                <button type="button" class="custom-select-option" data-value="">--</button>
+                <button type="button" class="custom-select-option" data-value="Jr">Jr.</button>
+                <button type="button" class="custom-select-option" data-value="Sr">Sr.</button>
+                <button type="button" class="custom-select-option" data-value="I">I</button>
+                <button type="button" class="custom-select-option" data-value="II">II</button>
+                <button type="button" class="custom-select-option" data-value="III">III</button>
+                <button type="button" class="custom-select-option" data-value="IV">IV</button>
+                <button type="button" class="custom-select-option" data-value="V">V</button>
+                <button type="button" class="custom-select-option" data-value="VI">VI</button>
+                <button type="button" class="custom-select-option" data-value="VII">VII</button>
+                <button type="button" class="custom-select-option" data-value="VIII">VIII</button>
+                <button type="button" class="custom-select-option" data-value="IX">IX</button>
+                <button type="button" class="custom-select-option" data-value="X">X</button>
+              </div>
+              <input type="hidden" id="suffix" value="" />
+            </div>
           </div>
         </div>
       </fieldset>
@@ -68,8 +95,55 @@
 
         <div class="form-row">
           <div class="form-group flex-grow">
-            <label for="dob">Date of Birth *</label>
-            <input type="date" id="dob" class="form-input" required />
+            <label for="country-origin-trigger">Country of Origin *</label>
+            <div class="custom-select" data-target-input="country-origin">
+              <button type="button" id="country-origin-trigger" class="custom-select-trigger form-input" aria-haspopup="listbox" aria-expanded="false">
+                <span class="custom-select-value">🇺🇸 United States</span>
+                <span class="custom-select-chevron" aria-hidden="true">&#9662;</span>
+              </button>
+              <div class="custom-select-menu" role="listbox"></div>
+              <input type="hidden" id="country-origin" value="US" required />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group flex-grow">
+            <label for="dob-month-trigger">Birth Date *</label>
+            <div class="dob-selectors" id="dob-selectors">
+              <div class="form-group flex-grow dob-part-group" data-part="month">
+                <div class="custom-select" data-target-input="dob-month">
+                  <button type="button" id="dob-month-trigger" class="custom-select-trigger form-input" aria-haspopup="listbox" aria-expanded="false">
+                    <span class="custom-select-value">Month</span>
+                    <span class="custom-select-chevron" aria-hidden="true">&#9662;</span>
+                  </button>
+                  <div class="custom-select-menu" role="listbox"></div>
+                  <input type="hidden" id="dob-month" value="" />
+                </div>
+              </div>
+              <div class="form-group flex-grow dob-part-group" data-part="day">
+                <div class="custom-select" data-target-input="dob-day">
+                  <button type="button" id="dob-day-trigger" class="custom-select-trigger form-input" aria-haspopup="listbox" aria-expanded="false">
+                    <span class="custom-select-value">Day</span>
+                    <span class="custom-select-chevron" aria-hidden="true">&#9662;</span>
+                  </button>
+                  <div class="custom-select-menu" role="listbox"></div>
+                  <input type="hidden" id="dob-day" value="" />
+                </div>
+              </div>
+              <div class="form-group flex-grow dob-part-group" data-part="year">
+                <div class="custom-select" data-target-input="dob-year">
+                  <button type="button" id="dob-year-trigger" class="custom-select-trigger form-input" aria-haspopup="listbox" aria-expanded="false">
+                    <span class="custom-select-value">Year</span>
+                    <span class="custom-select-chevron" aria-hidden="true">&#9662;</span>
+                  </button>
+                  <div class="custom-select-menu" role="listbox"></div>
+                  <input type="hidden" id="dob-year" value="" />
+                </div>
+              </div>
+            </div>
+            <small id="dob-format-hint" class="dob-format-hint">Format: MM / DD / YYYY</small>
+            <input type="hidden" id="dob" required />
             <span id="age-error" class="error-text" style="display:none; color:var(--mint-accent);">You must be 18+ to register.</span>
           </div>
         </div>
@@ -80,14 +154,21 @@
 
         <div class="form-row">
           <div class="form-group flex-grow">
-            <label for="gender">Gender *</label>
-            <select id="gender" class="form-input" required>
-              <option value="">Select option</option>
-              <option value="female">Female</option>
-              <option value="male">Male</option>
-              <option value="non-binary">Non-binary</option>
-              <option value="prefer-not-to-say">Prefer not to say</option>
-            </select>
+            <label for="gender-trigger">Gender *</label>
+            <div class="custom-select" data-target-input="gender">
+              <button type="button" id="gender-trigger" class="custom-select-trigger form-input" aria-haspopup="listbox" aria-expanded="false">
+                <span class="custom-select-value">Select option</span>
+                <span class="custom-select-chevron" aria-hidden="true">&#9662;</span>
+              </button>
+              <div class="custom-select-menu" role="listbox">
+                <button type="button" class="custom-select-option" data-value="">Select option</button>
+                <button type="button" class="custom-select-option" data-value="female">Female</button>
+                <button type="button" class="custom-select-option" data-value="male">Male</button>
+                <button type="button" class="custom-select-option" data-value="non-binary">Non-binary</button>
+                <button type="button" class="custom-select-option" data-value="prefer-not-to-say">Prefer not to say</button>
+              </div>
+              <input type="hidden" id="gender" required value="" />
+            </div>
           </div>
         </div>
       </fieldset>

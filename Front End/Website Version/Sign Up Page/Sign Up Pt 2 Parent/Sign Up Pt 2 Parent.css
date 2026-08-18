@@ -11,7 +11,7 @@
   --bg-canvas: #F8FAFC;
   --card-bg: #FFFFFF;
   --card-bg-rgb: 255, 255, 255;
-  --border-subtle: #E2E8F0;
+  --border-subtle: rgba(148, 163, 184, 0.42);
   --text-main: #1E293B;
   --text-muted: #64748B;
   --card-hover-shadow: rgba(99, 102, 241, 0.18);
@@ -30,7 +30,7 @@
   --bg-canvas: #090D16;
   --card-bg: #111827;
   --card-bg-rgb: 17, 24, 39;
-  --border-subtle: #1F2937;
+  --border-subtle: rgba(148, 163, 184, 0.28);
   --text-main: #F9FAFB;
   --text-muted: #9CA3AF;
   --card-hover-shadow: rgba(129, 140, 248, 0.25);
@@ -38,6 +38,23 @@
   --mesh-1: rgba(99, 102, 241, 0.25);
   --mesh-2: rgba(16, 185, 129, 0.15);
   --mesh-3: rgba(79, 70, 229, 0.22);
+}
+
+[data-surface-mode="solid"] .signup-container {
+  background: rgba(var(--card-bg-rgb), 0.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35), 0 0 0 1px var(--border-subtle);
+}
+
+[data-surface-mode="solid"] .form-input {
+  background: rgba(var(--card-bg-rgb), 0.96);
+}
+
+[data-surface-mode="solid"] .custom-select-menu {
+  background: rgba(var(--card-bg-rgb), 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 body {
@@ -60,12 +77,12 @@ body {
   position: relative;
   width: min(100%, 620px);
   padding: 40px;
-  background: rgba(var(--card-bg-rgb), 0.88);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  background: rgba(var(--card-bg-rgb), 0.36);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
   border: 1px solid var(--border-subtle);
   border-radius: 32px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35), 0 0 0 1px var(--border-subtle);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.24), 0 0 0 1px var(--border-subtle);
   transition: background 0.3s ease, border-color 0.3s ease;
 }
 
@@ -148,7 +165,7 @@ body {
 .form-input {
   width: 100%;
   padding: 14px 16px;
-  background-color: var(--card-bg);
+  background: rgba(var(--card-bg-rgb), 0.14);
   border: 2px solid var(--border-subtle);
   border-radius: 14px;
   color: var(--text-main);
@@ -168,18 +185,91 @@ body {
   opacity: 0.6;
 }
 
-select.form-input {
-  appearance: none;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-  background-size: 16px;
-  padding-right: 40px;
+.custom-select {
+  position: relative;
+}
+
+.custom-select-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
   cursor: pointer;
+}
+
+.custom-select-value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.custom-select-chevron {
+  color: var(--text-muted);
+  transition: transform 0.2s ease;
+}
+
+.custom-select.open .custom-select-chevron {
+  transform: rotate(180deg);
+}
+
+.custom-select-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  padding: 8px;
+  border-radius: 14px;
+  border: 1px solid var(--border-subtle);
+  background: rgba(var(--card-bg-rgb), 0.38);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.28);
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 260px;
+  overflow-y: auto;
+  z-index: 30;
+}
+
+.custom-select.open .custom-select-menu {
+  display: flex;
+}
+
+.custom-select-option {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text-main);
+  font-size: 14px;
+  text-align: left;
+  padding: 10px 12px;
+  cursor: pointer;
+}
+
+.custom-select-option:hover,
+.custom-select-option.is-selected {
+  background-color: rgba(99, 102, 241, 0.12);
 }
 
 .form-input.error {
   border-color: #EF4444;
+}
+
+.dob-selectors {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.dob-selectors.error .custom-select-trigger {
+  border-color: #EF4444;
+}
+
+.dob-format-hint {
+  color: var(--text-muted);
+  font-size: 12px;
 }
 
 .pill-button {
@@ -243,14 +333,16 @@ select.form-input {
   box-shadow: 0 6px 18px rgba(16, 185, 129, 0.4);
 }
 
-.theme-toggle-fab {
+.theme-toggle-fab,
+.transparency-toggle-fab {
   position: fixed;
-  bottom: 24px;
   right: 24px;
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  background-color: var(--card-bg);
+  background: rgba(var(--card-bg-rgb), 0.3);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 2px solid var(--border-subtle);
   color: var(--text-main);
   font-size: 20px;
@@ -263,25 +355,37 @@ select.form-input {
   transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.theme-toggle-fab:hover {
+.theme-toggle-fab {
+  bottom: 24px;
+}
+
+.transparency-toggle-fab {
+  bottom: 88px;
+}
+
+.theme-toggle-fab:hover,
+.transparency-toggle-fab:hover {
   transform: scale(1.08);
 }
 
-[data-theme="light"] .theme-toggle-fab:hover {
+[data-theme="light"] .theme-toggle-fab:hover,
+[data-theme="light"] .transparency-toggle-fab:hover {
   background-color: var(--primary-indigo);
   border-color: var(--primary-indigo);
   color: #FFFFFF;
   box-shadow: 0 10px 25px rgba(99, 102, 241, 0.35);
 }
 
-[data-theme="dark"] .theme-toggle-fab:hover {
+[data-theme="dark"] .theme-toggle-fab:hover,
+[data-theme="dark"] .transparency-toggle-fab:hover {
   background-color: var(--mint-accent);
   border-color: var(--mint-accent);
   color: #FFFFFF;
   box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
 }
 
-.theme-toggle-fab:active {
+.theme-toggle-fab:active,
+.transparency-toggle-fab:active {
   transform: scale(0.95);
 }
 
@@ -299,5 +403,10 @@ select.form-input {
   .form-group.prefix-group,
   .form-group.suffix-group {
     width: 100%;
+  }
+
+  .dob-selectors {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
   }
 }

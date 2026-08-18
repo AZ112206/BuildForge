@@ -41,6 +41,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // ==========================================
   const themeToggleBtn = document.getElementById("theme-toggle-btn");
   const themeIcon = document.getElementById("theme-icon");
+  const transparencyToggleBtn = document.getElementById("transparency-toggle-btn");
+  const transparencyIcon = document.getElementById("transparency-icon");
   const htmlElement = document.documentElement;
 
   // Check saved preferences or system defaults on load
@@ -51,6 +53,11 @@ document.addEventListener("DOMContentLoaded", () => {
   } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
     updateThemeIcon("dark");
   }
+
+  const savedSurfaceMode = localStorage.getItem("kidInSurfaceMode");
+  const preferredSurfaceMode = savedSurfaceMode === "solid" || savedSurfaceMode === "transparent" ? savedSurfaceMode : "transparent";
+  htmlElement.setAttribute("data-surface-mode", preferredSurfaceMode);
+  updateTransparencyIcon(preferredSurfaceMode);
 
   // Handle manual toggle clicks
   themeToggleBtn.addEventListener("click", () => {
@@ -72,6 +79,17 @@ document.addEventListener("DOMContentLoaded", () => {
     updateThemeIcon(newTheme);
   });
 
+  if (transparencyToggleBtn) {
+    transparencyToggleBtn.addEventListener("click", () => {
+      const currentMode = htmlElement.getAttribute("data-surface-mode") || "transparent";
+      const nextMode = currentMode === "transparent" ? "solid" : "transparent";
+
+      htmlElement.setAttribute("data-surface-mode", nextMode);
+      localStorage.setItem("kidInSurfaceMode", nextMode);
+      updateTransparencyIcon(nextMode);
+    });
+  }
+
   // Update the moon/sun icon based on current state
   function updateThemeIcon(theme) {
     if (theme === "dark") {
@@ -79,6 +97,11 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       themeIcon.textContent = "🌙"; // Moon icon in light mode
     }
+  }
+
+  function updateTransparencyIcon(mode) {
+    if (!transparencyIcon) return;
+    transparencyIcon.textContent = mode === "transparent" ? "💎" : "⬛";
   }
 
 });

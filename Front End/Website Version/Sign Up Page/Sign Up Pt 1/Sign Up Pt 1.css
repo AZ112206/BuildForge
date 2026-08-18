@@ -42,6 +42,21 @@
   --mesh-3: rgba(79, 70, 229, 0.22);
 }
 
+[data-surface-mode="transparent"] .signup-container {
+  background: rgba(var(--card-bg-rgb), 0.36);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.24), 0 0 0 1px var(--border-subtle);
+}
+
+[data-surface-mode="transparent"] .role-card {
+  background-color: rgba(var(--card-bg-rgb), 0.32);
+}
+
+[data-surface-mode="transparent"] .role-card::after {
+  background-color: rgba(var(--card-bg-rgb), 0.22);
+}
+
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --primary-indigo: #818CF8;
@@ -148,7 +163,7 @@ body {
 
 .role-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px -5px var(--card-hover-shadow);
+  box-shadow: 0 10px 22px -8px rgba(0, 0, 0, 0.22);
 }
 
 /* The Rotating Clockwise Glow Border on Hover */
@@ -157,26 +172,15 @@ body {
   position: absolute;
   inset: -3px;
   border-radius: 22px;
-  background: conic-gradient(
-    from 0deg at 50% 50%, 
-    transparent 0%, 
-    transparent 50%, 
-    var(--mint-accent) 75%, 
-    var(--primary-indigo) 100%
-  );
+  background: transparent;
   z-index: -2;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
 .role-card:hover::before {
-  opacity: 1;
-  animation: clockwiseGlow 3s linear infinite;
-}
-
-@keyframes clockwiseGlow {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  opacity: 0;
+  animation: none;
 }
 
 .role-card::after {
@@ -270,14 +274,16 @@ body {
    Theme Toggle Floating Button (FAB)
    ========================================== */
 
-.theme-toggle-fab {
+.theme-toggle-fab,
+.transparency-toggle-fab {
   position: fixed;
-  bottom: 24px;
   right: 24px;
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  background-color: var(--card-bg);
+  background: rgba(var(--card-bg-rgb), 0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 2px solid var(--border-subtle);
   color: var(--text-main);
   font-size: 20px;
@@ -290,26 +296,43 @@ body {
   transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+.theme-toggle-fab {
+  bottom: 24px;
+}
+
+.transparency-toggle-fab {
+  bottom: 88px;
+}
+
 /* Theme toggle hover behavior */
-.theme-toggle-fab:hover {
+.theme-toggle-fab:hover,
+.transparency-toggle-fab:hover {
   transform: scale(1.08);
   box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
 }
 
-[data-theme="light"] .theme-toggle-fab:hover {
+[data-theme="light"] .theme-toggle-fab:hover,
+[data-theme="light"] .transparency-toggle-fab:hover {
   background-color: var(--primary-indigo);
   border-color: var(--primary-indigo);
   color: #FFFFFF;
   box-shadow: 0 10px 25px rgba(99, 102, 241, 0.35);
 }
 
-[data-theme="dark"] .theme-toggle-fab:hover {
+[data-theme="dark"] .theme-toggle-fab:hover,
+[data-theme="dark"] .transparency-toggle-fab:hover {
   background-color: var(--mint-accent);
   border-color: var(--mint-accent);
   color: #FFFFFF;
   box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
 }
 
-.theme-toggle-fab:active {
+.theme-toggle-fab:active,
+.transparency-toggle-fab:active {
   transform: scale(0.95);
+}
+
+[data-surface-mode="transparent"] .theme-toggle-fab,
+[data-surface-mode="transparent"] .transparency-toggle-fab {
+  background: rgba(var(--card-bg-rgb), 0.3);
 }
