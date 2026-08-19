@@ -1,5 +1,5 @@
 /* ==========================================
-   Kid-In Design System: Dual-Theme Engine
+   BuildForge Design System: Dual-Theme Engine
    ========================================== */
 
 :root {
@@ -48,12 +48,6 @@
 }
 
 [data-surface-mode="solid"] .form-input {
-  background: rgba(var(--card-bg-rgb), 0.96);
-}
-
-[data-surface-mode="solid"] .signup-form input[type="email"],
-[data-surface-mode="solid"] .signup-form input[type="password"],
-[data-surface-mode="solid"] .password-field input[type="text"] {
   background: rgba(var(--card-bg-rgb), 0.96);
 }
 
@@ -200,27 +194,6 @@ body {
   font-size: 15px;
   box-sizing: border-box;
   transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
-}
-
-.signup-form input[type="email"],
-.signup-form input[type="password"],
-.password-field input[type="text"] {
-  width: 100%;
-  padding: 14px 16px;
-  background: rgba(var(--card-bg-rgb), 0.14);
-  border: 2px solid var(--border-subtle);
-  border-radius: 14px;
-  color: var(--text-main);
-  font-size: 15px;
-  box-sizing: border-box;
-}
-
-.signup-form input[type="email"]:focus,
-.signup-form input[type="password"]:focus,
-.password-field input[type="text"]:focus {
-  outline: none;
-  border-color: var(--primary-indigo);
-  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
 }
 
 .form-input:focus {
@@ -488,40 +461,3 @@ body {
     gap: 10px;
   }
 }
-
-.signup-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.password-field { position: relative; }
-.password-field .form-input,
-.password-field input { padding-right: 52px; }
-.otp-group {
-  display: flex;
-  gap: 12px;
-  justify-content: space-between;
-}
-.otp-input {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  text-align: center;
-  font-size: 24px;
-  font-weight: 700;
-  padding: 0;
-  background: rgba(var(--card-bg-rgb), 0.14);
-  border: 2px solid var(--border-subtle);
-  border-radius: 14px;
-  color: var(--text-main);
-  box-sizing: border-box;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
-}
-.otp-input:focus {
-  outline: none;
-  border-color: var(--primary-indigo);
-  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
-}
-[data-surface-mode="solid"] .otp-input { background: rgba(var(--card-bg-rgb), 0.96); }
-.form-actions { margin-top: 4px; }
-@media (max-width: 520px) { .form-actions { flex-direction: column; } .form-actions .pill-button { width: 100%; } .otp-group { gap: 8px; } .otp-input { font-size: 20px; } }

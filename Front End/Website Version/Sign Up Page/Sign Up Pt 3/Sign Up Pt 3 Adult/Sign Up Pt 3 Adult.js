@@ -1,17 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("guest-signup-form");
-  const email = document.getElementById("guest-email");
-  const password = document.getElementById("guest-password");
-  const confirmPassword = document.getElementById("guest-confirm-password");
-  const submitBtn = document.getElementById("guest-submit-btn");
+  const form = document.getElementById("adult-signup-form");
+  const email = document.getElementById("adult-email");
+  const password = document.getElementById("adult-password");
+  const confirmPassword = document.getElementById("adult-confirm-password");
+  const submitBtn = document.getElementById("adult-submit-btn");
   const backBtn = document.getElementById("back-btn");
-  const draftKey = "kidInGuestAccountDraft";
+  const draftKey = "buildForgeAdultAccountDraft";
   const meter = form.querySelector(".password-meter");
   const meterFill = meter.querySelector(".password-meter-fill");
   const meterLabel = meter.querySelector(".password-meter-label");
-  const requirement = document.getElementById("guest-password-requirement");
+  const requirement = document.getElementById("adult-password-requirement");
   const requirementIcon = requirement.querySelector(".requirement-icon");
-  const confirmRequirement = document.getElementById("guest-confirm-password-requirement");
+  const confirmRequirement = document.getElementById("adult-confirm-password-requirement");
   const confirmRequirementIcon = confirmRequirement.querySelector(".requirement-icon");
   const themeToggleBtn = document.getElementById("theme-toggle-btn");
   const themeIcon = document.getElementById("theme-icon");
@@ -28,9 +28,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const MOON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
   const CLEAR_SQ_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/></svg>`;
   const SOLID_SQ_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3" fill="currentColor"/></svg>`;
-  function applyAppearance() { const theme = localStorage.getItem("kidInTheme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"); const mode = localStorage.getItem("kidInSurfaceMode") === "solid" ? "solid" : "transparent"; htmlElement.setAttribute("data-theme", theme); htmlElement.setAttribute("data-surface-mode", mode); themeIcon.innerHTML = theme === "dark" ? SUN_SVG : MOON_SVG; transparencyIcon.innerHTML = mode === "transparent" ? CLEAR_SQ_SVG : SOLID_SQ_SVG; }
-  themeToggleBtn.addEventListener("click", () => { const theme = htmlElement.getAttribute("data-theme") === "dark" ? "light" : "dark"; htmlElement.setAttribute("data-theme", theme); localStorage.setItem("kidInTheme", theme); themeIcon.innerHTML = theme === "dark" ? SUN_SVG : MOON_SVG; });
-  transparencyToggleBtn.addEventListener("click", () => { const mode = htmlElement.getAttribute("data-surface-mode") === "transparent" ? "solid" : "transparent"; htmlElement.setAttribute("data-surface-mode", mode); localStorage.setItem("kidInSurfaceMode", mode); transparencyIcon.innerHTML = mode === "transparent" ? CLEAR_SQ_SVG : SOLID_SQ_SVG; });
+  function applyAppearance() { const theme = localStorage.getItem("buildForgeTheme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"); const mode = localStorage.getItem("buildForgeSurfaceMode") === "solid" ? "solid" : "transparent"; htmlElement.setAttribute("data-theme", theme); htmlElement.setAttribute("data-surface-mode", mode); themeIcon.innerHTML = theme === "dark" ? SUN_SVG : MOON_SVG; transparencyIcon.innerHTML = mode === "transparent" ? CLEAR_SQ_SVG : SOLID_SQ_SVG; }
+  themeToggleBtn.addEventListener("click", () => { const theme = htmlElement.getAttribute("data-theme") === "dark" ? "light" : "dark"; htmlElement.setAttribute("data-theme", theme); localStorage.setItem("buildForgeTheme", theme); themeIcon.innerHTML = theme === "dark" ? SUN_SVG : MOON_SVG; });
+  transparencyToggleBtn.addEventListener("click", () => { const mode = htmlElement.getAttribute("data-surface-mode") === "transparent" ? "solid" : "transparent"; htmlElement.setAttribute("data-surface-mode", mode); localStorage.setItem("buildForgeSurfaceMode", mode); transparencyIcon.innerHTML = mode === "transparent" ? CLEAR_SQ_SVG : SOLID_SQ_SVG; });
   applyAppearance();
 
   function updateMeter() {
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
     toggle.setAttribute("data-visible", showing ? "true" : "false");
     toggle.setAttribute("aria-label", showing ? "Hide password" : "Show password");
   }));
-  backBtn.addEventListener("click", () => { goTo("../../Sign Up Pt 2/Sign Up Pt 2 Guest/Sign Up Pt 2 Guest.html"); });
-  form.addEventListener("submit", (event) => { event.preventDefault(); sessionStorage.setItem("kidInGuestAccountData", JSON.stringify({ email: email.value.trim(), role: "guest" })); });
+  backBtn.addEventListener("click", () => { goTo("../../Sign Up Pt 2/Sign Up Pt 2 Adult/Sign Up Pt 2 Adult.html"); });
+  form.addEventListener("submit", (event) => { event.preventDefault(); sessionStorage.setItem("buildForgeAdultAccountData", JSON.stringify({ email: email.value.trim(), role: "adult" })); });
   updateMeter();
 });

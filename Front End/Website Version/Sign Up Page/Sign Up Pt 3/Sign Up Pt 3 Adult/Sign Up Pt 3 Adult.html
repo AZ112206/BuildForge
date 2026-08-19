@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kid-In | Guest Sign Up Pt 3</title>
-  <link rel="stylesheet" href="Sign Up Pt 3 Guest.css" />
+  <title>BuildForge | Adult Sign Up Pt 3</title>
+  <link rel="stylesheet" href="Sign Up Pt 3 Adult.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css" />
 </head>
 <body>
@@ -27,51 +27,51 @@
 
   <div class="signup-container">
     <div class="signup-header">
-      <h1>Guest Sign Up</h1>
-      <p>Required for guests to view kids/students of all ages experience and work</p>
+      <h1>Adult Sign Up</h1>
+      <p>Required for adults to view kids/students of all ages experience and work</p>
     </div>
-    <!-- Guest Sign Up Form -->
-    <form id="guest-signup-form" class="signup-form">
+    <!-- Adult Sign Up Form -->
+    <form id="adult-signup-form" class="signup-form">
       <div class="form-group">
-        <label for="guest-email">Email</label>
-        <input type="email" id="guest-email" name="guest-email" required />
+        <label for="adult-email">Email</label>
+        <input type="email" id="adult-email" name="adult-email" required />
       </div>
       <div class="form-group">
-        <label for="guest-password">Password</label>
+        <label for="adult-password">Password</label>
         <div class="password-field">
-          <input type="password" id="guest-password" name="guest-password" required />
-          <button type="button" class="password-toggle" data-target="guest-password" aria-label="Show password" data-visible="false">
+          <input type="password" id="adult-password" name="adult-password" required />
+          <button type="button" class="password-toggle" data-target="adult-password" aria-label="Show password" data-visible="false">
             <span class="icon-eye-off" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a21.8 21.8 0 0 1 5.06-6.06"/><path d="M9.9 4.24A10.94 10.94 0 0 1 12 4c7 0 11 8 11 8a21.8 21.8 0 0 1-2.16 3.19"/><path d="M14.12 14.12a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg></span>
             <span class="icon-eye" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg></span>
           </button>
         </div>
         <div class="password-meter" aria-live="polite"><span class="password-meter-bar"><span class="password-meter-fill"></span></span><span class="password-meter-label">Enter a password</span></div>
-        <div class="password-requirement" id="guest-password-requirement">
+        <div class="password-requirement" id="adult-password-requirement">
           <span class="requirement-icon">&#10005;</span>
           <span class="requirement-text">At least 8 characters</span>
         </div>
       </div>
       <div class="form-group">
-        <label for="guest-confirm-password">Repeat Password</label>
+        <label for="adult-confirm-password">Repeat Password</label>
         <div class="password-field">
-          <input type="password" id="guest-confirm-password" name="guest-confirm-password" required />
-          <button type="button" class="password-toggle" data-target="guest-confirm-password" aria-label="Show password" data-visible="false">
+          <input type="password" id="adult-confirm-password" name="adult-confirm-password" required />
+          <button type="button" class="password-toggle" data-target="adult-confirm-password" aria-label="Show password" data-visible="false">
             <span class="icon-eye-off" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a21.8 21.8 0 0 1 5.06-6.06"/><path d="M9.9 4.24A10.94 10.94 0 0 1 12 4c7 0 11 8 11 8a21.8 21.8 0 0 1-2.16 3.19"/><path d="M14.12 14.12a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg></span>
             <span class="icon-eye" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg></span>
           </button>
         </div>
-        <div class="password-requirement" id="guest-confirm-password-requirement">
+        <div class="password-requirement" id="adult-confirm-password-requirement">
           <span class="requirement-icon">&#10005;</span>
           <span class="requirement-text">Passwords must match</span>
         </div>
       </div>
       <div class="form-actions">
         <button type="button" id="back-btn" class="pill-button pill-button-mint">Back</button>
-        <button type="submit" id="guest-submit-btn" class="pill-button pill-button-indigo" disabled>Next</button>
+        <button type="submit" id="adult-submit-btn" class="pill-button pill-button-indigo" disabled>Next</button>
       </div>
     </form>
   </div>
 
-  <script src="Sign Up Pt 3 Guest.js"></script>
+  <script src="Sign Up Pt 3 Adult.js"></script>
 </body>
 </html>
