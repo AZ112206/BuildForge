@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kid-In | Email Verification</title>
+  <link rel="stylesheet" href="Sign Up Pt 4.css" />
+</head>
+<body>
+  <div id="gear-toggle-container" class="gear-toggle-container">
+    <div class="gear-options">
+      <button id="theme-toggle-btn" class="gear-option-btn" aria-label="Toggle Dark/Light Mode">
+        <span id="theme-icon"></span>
+      </button>
+      <button id="transparency-toggle-btn" class="gear-option-btn" aria-label="Toggle Solid/Transparent Mode">
+        <span id="transparency-icon"></span>
+      </button>
+    </div>
+    <button class="gear-main-btn" aria-label="Display settings">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="signup-container">
+    <div class="signup-header">
+      <h1>Verify Your Email</h1>
+      <p>Enter the 6-digit code we sent to your email to continue.</p>
+    </div>
+    <form id="verify-form" class="signup-form">
+      <div class="form-group">
+        <label for="code-1">Verification Code</label>
+        <div class="otp-group" role="group" aria-label="6-digit verification code">
+          <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="otp-input" id="code-1" name="code-1" autocomplete="one-time-code" />
+          <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="otp-input" id="code-2" name="code-2" />
+          <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="otp-input" id="code-3" name="code-3" />
+          <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="otp-input" id="code-4" name="code-4" />
+          <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="otp-input" id="code-5" name="code-5" />
+          <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="otp-input" id="code-6" name="code-6" />
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="button" id="back-btn" class="pill-button pill-button-mint">Back</button>
+        <button type="submit" id="verify-submit-btn" class="pill-button pill-button-indigo" disabled>Next</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="Sign Up Pt 4.js"></script>
+</body>
+</html>
