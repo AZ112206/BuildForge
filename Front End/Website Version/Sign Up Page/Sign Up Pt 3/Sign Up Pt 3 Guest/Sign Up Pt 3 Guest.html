@@ -32,26 +32,68 @@
     </div>
     <!-- Guest Sign Up Form -->
     <form id="guest-signup-form" class="signup-form">
-      <div class="form-group">
-        <label for="guest-email">Email</label>
-        <input type="email" id="guest-email" name="guest-email" required />
-      </div>
-      <div class="form-group">
-        <label for="guest-password">Password</label>
-        <input type="password" id="guest-password" name="guest-password" required />
-      </div>
-      <div class="form-group">
-        <label for="guest-confirm-password">Repeat Password</label>
-        <input type="password" id="guest-confirm-password" name="guest-confirm-password" required />
-      </div>
+      <fieldset class="form-section">
+        <legend>Account Security</legend>
+
+        <div class="form-group">
+          <label for="guest-email">Email Address *</label>
+          <input type="email" id="guest-email" name="guest-email" class="form-input" required placeholder="e.g., guest@email.com" autocomplete="email" />
+        </div>
+
+        <div class="form-group password-group">
+          <label for="guest-password">Password *</label>
+          <div class="password-field">
+            <input type="password" id="guest-password" name="guest-password" class="form-input password-input" required placeholder="Create a strong password" autocomplete="new-password" />
+            <button type="button" class="password-toggle" data-target="guest-password" aria-label="Show password">
+              <svg class="toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+          <div class="password-meter" aria-live="polite" aria-label="Password strength meter">
+            <span class="password-segment" data-strength="1"></span>
+            <span class="password-segment" data-strength="2"></span>
+            <span class="password-segment" data-strength="3"></span>
+            <span class="password-segment" data-strength="4"></span>
+            <span class="password-segment" data-strength="5"></span>
+          </div>
+          <div class="password-strength-row">
+            <span class="password-strength-label">Strength</span>
+            <span id="guest-password-strength-value" class="password-strength-value">–</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="guest-confirm-password">Repeat Password *</label>
+          <div class="password-field">
+            <input type="password" id="guest-confirm-password" name="guest-confirm-password" class="form-input password-input" required placeholder="Confirm your password" autocomplete="new-password" />
+            <button type="button" class="password-toggle" data-target="guest-confirm-password" aria-label="Show password">
+              <svg class="toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+          <small id="guest-password-match-error" class="error-text" style="display:none;">Passwords do not match.</small>
+        </div>
+      </fieldset>
       <div class="form-actions">
         <button type="button" id="back-btn" class="pill-button pill-button-mint">Back</button>
         <button type="submit" id="guest-submit-btn" class="pill-button pill-button-indigo" disabled>Next</button>
       </div>
-      </div>
     </form>
   </div>
 
+  <div id="signup-success" class="signup-success" hidden>
+    <div class="success-icon" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <polyline points="9 12 11.5 14.5 16 9.5"/>
+      </svg>
+    </div>
+    <h2>You're all set, <span id="success-first-name">friend</span></h2>
+    <p>Your <span id="success-role">account</span> has been created. Check your email to verify and get started.</p>
+  </div>
+
   <script src="Sign Up Pt 3 Guest.js"></script>
-</body>
-</html>

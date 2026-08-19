@@ -452,6 +452,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     sessionStorage.setItem("kidInUserRole", "parent");
     sessionStorage.setItem("kidInParentLegalData", JSON.stringify(parentData));
-    console.log("Parent legal data captured securely:", parentData);
+    window.location.href = "../../Sign Up Pt 3/Sign Up Pt 3 Parent/Sign Up Pt 3 Parent.html";
   });
 });

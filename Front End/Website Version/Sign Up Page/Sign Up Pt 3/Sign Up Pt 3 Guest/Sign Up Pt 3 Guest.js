@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("parent-legal-form");
+  const form = document.getElementById("guest-signup-form");
   const firstNameInput = document.getElementById("first-name");
   const lastNameInput = document.getElementById("last-name");
   const genderSelect = document.getElementById("gender");
@@ -10,6 +10,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const dobYearInput = document.getElementById("dob-year");
   const dobSelectorsContainer = document.getElementById("dob-selectors");
   const dobFormatHint = document.getElementById("dob-format-hint");
+  const hasPt2LegalFields = Boolean(firstNameInput && lastNameInput && genderSelect && dobInput && countryOriginInput && dobSelectorsContainer);
+  const emailInput = document.getElementById("guest-email");
+  const passwordInput = document.getElementById("guest-password");
+  const confirmPasswordInput = document.getElementById("guest-confirm-password");
+  const guestPasswordStrengthValue = document.getElementById("guest-password-strength-value");
+  const guestPasswordMatchError = document.getElementById("guest-password-match-error");
   const submitBtn = document.getElementById("guest-submit-btn");
   const backBtn = document.getElementById("back-btn");
   const ageErrorSpan = document.getElementById("age-error");
@@ -36,6 +42,28 @@ document.addEventListener("DOMContentLoaded", () => {
   function dispatchFieldUpdate(input) {
     input.dispatchEvent(new Event("input", { bubbles: true }));
     input.dispatchEvent(new Event("change", { bubbles: true }));
+  }
+
+  function showSignupSuccess(role, capturedData) {
+    const successPanel = document.getElementById("signup-success");
+    const signupContainer = document.querySelector(".signup-container");
+    if (!successPanel || !signupContainer) {
+      return;
+    }
+
+    const firstName = (capturedData && capturedData.firstName) || firstNameInput?.value.trim() || "";
+    const firstNameTarget = document.getElementById("success-first-name");
+    const roleTarget = document.getElementById("success-role");
+    if (firstNameTarget) {
+      firstNameTarget.textContent = firstName || "friend";
+    }
+    if (roleTarget) {
+      roleTarget.textContent = role === "guest" ? "guest account" : `${role} account`;
+    }
+
+    signupContainer.hidden = true;
+    successPanel.hidden = false;
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   function updateThemeIcon(theme) {
@@ -353,38 +381,174 @@ document.addEventListener("DOMContentLoaded", () => {
     return age;
   }
 
+  function getPasswordStrength(password) {
+    if (!password) {
+      return { score: 0, label: "–" };
+    }
+
+    const checks = [
+      password.length >= 8,
+      /[a-z]/.test(password),
+      /[A-Z]/.test(password),
+      /\d/.test(password),
+      /[^A-Za-z0-9]/.test(password)
+    ];
+
+    const score = checks.filter(Boolean).length;
+
+    if (password.length < 8 && score <= 2) {
+      return { score: 1, label: "Very weak" };
+    }
+    if (score <= 2) {
+      return { score: 2, label: "Weak" };
+    }
+    if (score === 3) {
+      return { score: 3, label: "Fair" };
+    }
+    if (score === 4) {
+      return { score: 4, label: "Good" };
+    }
+    return { score: 5, label: "Strong" };
+  }
+
+  function updatePasswordStrengthMeter() {
+    const password = passwordInput.value;
+    const strengthColors = ["#ef4444", "#f97316", "#facc15", "#a3e635", "#22c55e"];
+    const segments = [...document.querySelectorAll(".password-segment")];
+    const { score, label } = getPasswordStrength(password);
+
+    segments.forEach((segment, index) => {
+      const isActive = index < score;
+      segment.classList.toggle("is-active", isActive);
+      segment.style.background = isActive ? strengthColors[index] : "rgba(148, 163, 184, 0.38)";
+    });
+
+    if (guestPasswordStrengthValue) {
+      guestPasswordStrengthValue.textContent = password ? label : "–";
+      guestPasswordStrengthValue.style.color = password ? strengthColors[Math.max(score - 1, 0)] : "var(--text-muted)";
+    }
+  }
+
+  function updatePasswordMatchState() {
+    if (!guestPasswordMatchError) {
+      return;
+    }
+
+    const hasPassword = passwordInput.value.length > 0 || confirmPasswordInput.value.length > 0;
+    if (!hasPassword) {
+      guestPasswordMatchError.style.display = "none";
+      passwordInput.classList.remove("error");
+      confirmPasswordInput.classList.remove("error");
+      return;
+    }
+
+    const passwordsMatch = passwordInput.value === confirmPasswordInput.value;
+    const isMismatch = passwordInput.value.length > 0 && confirmPasswordInput.value.length > 0 && !passwordsMatch;
+
+    guestPasswordMatchError.style.display = isMismatch ? "block" : "none";
+    passwordInput.classList.toggle("error", isMismatch);
+    confirmPasswordInput.classList.toggle("error", isMismatch);
+  }
+
+  function togglePasswordVisibility(button) {
+    const allToggles = document.querySelectorAll(".password-toggle");
+    const allPasswordInputs = document.querySelectorAll(".password-input");
+    if (!allToggles.length || !allPasswordInputs.length) {
+      return;
+    }
+
+    const anyHidden = Array.from(allPasswordInputs).some((input) => input.type === "password");
+    const shouldShow = anyHidden;
+
+    allPasswordInputs.forEach((input) => {
+      input.type = shouldShow ? "text" : "password";
+    });
+
+    allToggles.forEach((toggleButton) => {
+      toggleButton.classList.toggle("is-visible", shouldShow);
+      toggleButton.setAttribute("aria-label", shouldShow ? "Hide password" : "Show password");
+    });
+  }
+
   function checkFormValidity() {
-    const firstName = firstNameInput.value.trim();
-    const lastName = lastNameInput.value.trim();
-    const dobValue = dobInput.value;
-    const genderValue = genderSelect.value;
-    const countryValue = countryOriginInput.value;
+    const emailValue = emailInput.value.trim();
+    const passwordValue = passwordInput.value;
+    const confirmPasswordValue = confirmPasswordInput.value;
 
-    let isValid = Boolean(firstName && lastName && dobValue && genderValue && countryValue);
+    let isValid = Boolean(emailValue && passwordValue && confirmPasswordValue && passwordValue === confirmPasswordValue);
 
-    if (dobValue) {
-      const age = validateAge(dobValue);
-      if (age < 18) {
-        ageErrorSpan.style.display = "block";
-        dobSelectorsContainer.classList.add("error");
-        isValid = false;
+    if (hasPt2LegalFields) {
+      const firstName = firstNameInput ? firstNameInput.value.trim() : "";
+      const lastName = lastNameInput ? lastNameInput.value.trim() : "";
+      const dobValue = dobInput ? dobInput.value : "";
+      const genderValue = genderSelect ? genderSelect.value : "";
+      const countryValue = countryOriginInput ? countryOriginInput.value : "";
+
+      isValid = Boolean(firstName && lastName && emailValue && dobValue && genderValue && countryValue && passwordValue && confirmPasswordValue && passwordValue === confirmPasswordValue);
+
+      if (dobValue) {
+        const age = validateAge(dobValue);
+        if (age < 18) {
+          if (ageErrorSpan) ageErrorSpan.style.display = "block";
+          if (dobSelectorsContainer) dobSelectorsContainer.classList.add("error");
+          isValid = false;
+        } else {
+          if (ageErrorSpan) ageErrorSpan.style.display = "none";
+          if (dobSelectorsContainer) dobSelectorsContainer.classList.remove("error");
+        }
       } else {
-        ageErrorSpan.style.display = "none";
-        dobSelectorsContainer.classList.remove("error");
+        if (ageErrorSpan) ageErrorSpan.style.display = "none";
+        if (dobSelectorsContainer) dobSelectorsContainer.classList.remove("error");
       }
     } else {
-      ageErrorSpan.style.display = "none";
-      dobSelectorsContainer.classList.remove("error");
+      if (ageErrorSpan) ageErrorSpan.style.display = "none";
+      if (dobSelectorsContainer) dobSelectorsContainer.classList.remove("error");
+    }
+
+    if (passwordValue || confirmPasswordValue) {
+      if (passwordValue !== confirmPasswordValue) {
+        isValid = false;
+      }
     }
 
     submitBtn.disabled = !isValid;
   }
 
-  document.querySelectorAll(".custom-select").forEach((customSelect) => {
-    initCustomSelect(customSelect);
+  if (document.querySelectorAll(".custom-select").length) {
+    document.querySelectorAll(".custom-select").forEach((customSelect) => {
+      initCustomSelect(customSelect);
+    });
+  }
+
+  document.querySelectorAll(".password-toggle").forEach((toggleButton) => {
+    toggleButton.addEventListener("click", () => togglePasswordVisibility(toggleButton));
   });
 
-  initializeDateSelectorsAndCountry();
+  if (passwordInput) {
+    passwordInput.addEventListener("input", () => {
+      updatePasswordStrengthMeter();
+      updatePasswordMatchState();
+      checkFormValidity();
+    });
+  }
+
+  if (confirmPasswordInput) {
+    confirmPasswordInput.addEventListener("input", () => {
+      updatePasswordMatchState();
+      checkFormValidity();
+    });
+  }
+
+  if (emailInput) {
+    emailInput.addEventListener("input", checkFormValidity);
+    emailInput.addEventListener("change", checkFormValidity);
+  }
+
+  if (hasPt2LegalFields) {
+    initializeDateSelectorsAndCountry();
+  }
+  updatePasswordStrengthMeter();
+  updatePasswordMatchState();
   checkFormValidity();
 
   if (themeToggleBtn && themeIcon) {
@@ -412,7 +576,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (backBtn) {
     backBtn.addEventListener("click", () => {
-      window.location.href = "../../Sign Up Pt 1/Sign Up Pt 1.html";
+      window.location.href = "../../Sign Up Pt 2/Sign Up Pt 2 Guest/Sign Up Pt 2 Guest.html";
     });
   }
 
@@ -428,9 +592,26 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  [firstNameInput, lastNameInput, dobInput, genderSelect, countryOriginInput].forEach((input) => {
-    input.addEventListener("input", checkFormValidity);
-    input.addEventListener("change", checkFormValidity);
+  if (hasPt2LegalFields) {
+    [firstNameInput, lastNameInput, dobInput, genderSelect, countryOriginInput].forEach((input) => {
+      input.addEventListener("input", checkFormValidity);
+      input.addEventListener("change", checkFormValidity);
+    });
+  }
+
+  [passwordInput, confirmPasswordInput].forEach((input) => {
+    if (input) {
+      input.addEventListener("input", () => {
+        updatePasswordMatchState();
+        updatePasswordStrengthMeter();
+        checkFormValidity();
+      });
+      input.addEventListener("change", () => {
+        updatePasswordMatchState();
+        updatePasswordStrengthMeter();
+        checkFormValidity();
+      });
+    }
   });
 
   form.addEventListener("submit", (event) => {
@@ -442,6 +623,8 @@ document.addEventListener("DOMContentLoaded", () => {
       middleName: document.getElementById("middle-name").value.trim(),
       lastName: lastNameInput.value.trim(),
       suffix: document.getElementById("suffix").value,
+      email: emailInput.value.trim(),
+      password: passwordInput.value,
       dob: dobInput.value,
       countryOfOrigin: countryOriginInput.value,
       gender: genderSelect.value,
@@ -452,6 +635,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     sessionStorage.setItem("kidInUserRole", "guest");
     sessionStorage.setItem("kidInGuestLegalData", JSON.stringify(guestData));
-    console.log("Guest legal data captured securely:", guestData);
+    showSignupSuccess("guest", guestData);
   });
 });

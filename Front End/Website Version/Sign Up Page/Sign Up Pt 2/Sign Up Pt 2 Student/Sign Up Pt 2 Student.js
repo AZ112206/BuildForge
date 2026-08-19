@@ -452,6 +452,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     sessionStorage.setItem("kidInUserRole", "student");
     sessionStorage.setItem("kidInStudentLegalData", JSON.stringify(studentData));
-    console.log("Student legal data captured securely:", studentData);
+    window.location.href = "../../Sign Up Pt 3/Sign Up Pt 3 Student/Sign Up Pt 3 Student.html";
   });
 });
