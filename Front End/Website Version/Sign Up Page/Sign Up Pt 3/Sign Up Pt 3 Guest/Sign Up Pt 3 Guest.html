@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kid-In | Guest Sign Up Pt 3</title>
+  <link rel="stylesheet" href="Sign Up Pt 3 Guest.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css" />
+</head>
+<body>
+  <div id="gear-toggle-container" class="gear-toggle-container">
+    <div class="gear-options">
+      <button id="theme-toggle-btn" class="gear-option-btn" aria-label="Toggle Dark/Light Mode">
+        <span id="theme-icon"></span>
+      </button>
+      <button id="transparency-toggle-btn" class="gear-option-btn" aria-label="Toggle Solid/Transparent Mode">
+        <span id="transparency-icon"></span>
+      </button>
+    </div>
+    <button class="gear-main-btn" aria-label="Display settings">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="signup-container">
+    <div class="signup-header">
+      <h1>Guest Sign Up</h1>
+      <p>Required for guests to view kids/students of all ages experience and work</p>
+    </div>
+    <!-- Guest Sign Up Form -->
+    <form id="guest-signup-form" class="signup-form">
+      <div class="form-group">
+        <label for="guest-email">Email</label>
+        <input type="email" id="guest-email" name="guest-email" required />
+      </div>
+      <div class="form-group">
+        <label for="guest-password">Password</label>
+        <input type="password" id="guest-password" name="guest-password" required />
+      </div>
+      <div class="form-group">
+        <label for="guest-confirm-password">Repeat Password</label>
+        <input type="password" id="guest-confirm-password" name="guest-confirm-password" required />
+      </div>
+      <div class="form-actions">
+        <button type="button" id="back-btn" class="pill-button pill-button-mint">Back</button>
+        <button type="submit" id="guest-submit-btn" class="pill-button pill-button-indigo" disabled>Next</button>
+      </div>
+      </div>
+    </form>
+  </div>
+
+  <script src="Sign Up Pt 3 Guest.js"></script>
+</body>
+</html>
