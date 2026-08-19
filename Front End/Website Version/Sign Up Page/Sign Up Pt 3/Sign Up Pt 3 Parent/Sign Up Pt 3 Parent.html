@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kid-In | Parent Sign Up</title>
-  <link rel="stylesheet" href="Sign Up Pt 2 Parent.css" />
+  <link rel="stylesheet" href="Sign Up Pt 3 Parent.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css" />
 </head>
 <body>
@@ -31,150 +31,41 @@
       <p>Required for family account security and child protection.</p>
     </div>
 
-    <form id="parent-legal-form">
-      <fieldset class="form-section">
-        <legend>Legal Name</legend>
+    <form id="parent-signup-form" class="signup-form">
+      <div class="form-group">
+        <label for="parent-email">Email</label>
+        <input type="email" id="parent-email" name="parent-email" required />
+      </div>
 
-        <div class="form-row">
-          <div class="form-group prefix-group">
-            <label for="prefix-trigger">Prefix</label>
-            <div class="custom-select" data-target-input="prefix">
-              <button type="button" id="prefix-trigger" class="custom-select-trigger form-input" aria-haspopup="listbox" aria-expanded="false">
-                <span class="custom-select-value">--</span>
-                <span class="custom-select-chevron" aria-hidden="true">&#9662;</span>
-              </button>
-              <div class="custom-select-menu" role="listbox">
-                <button type="button" class="custom-select-option" data-value="">--</button>
-                <button type="button" class="custom-select-option" data-value="Mr">Mr.</button>
-                <button type="button" class="custom-select-option" data-value="Ms">Ms.</button>
-                <button type="button" class="custom-select-option" data-value="Mrs">Mrs.</button>
-                <button type="button" class="custom-select-option" data-value="Dr">Dr.</button>
-                <button type="button" class="custom-select-option" data-value="Mx">Mx.</button>
-              </div>
-              <input type="hidden" id="prefix" value="" />
-            </div>
-          </div>
-
-          <div class="form-group flex-grow">
-            <label for="first-name">First Legal Name *</label>
-            <input type="text" id="first-name" class="form-input" required placeholder="e.g., Jane" />
-          </div>
+      <div class="form-group">
+        <label for="parent-password">Password</label>
+        <div class="password-field">
+          <input type="password" id="parent-password" name="parent-password" required />
+          <button type="button" class="password-toggle" data-target="parent-password" aria-label="Show password" data-visible="false">
+            <span class="icon-eye-off" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a21.8 21.8 0 0 1 5.06-6.06"/><path d="M9.9 4.24A10.94 10.94 0 0 1 12 4c7 0 11 8 11 8a21.8 21.8 0 0 1-2.16 3.19"/><path d="M14.12 14.12a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg></span>
+            <span class="icon-eye" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg></span>
+          </button>
         </div>
-
-        <div class="form-row">
-          <div class="form-group flex-grow">
-            <label for="middle-name">Middle Name (Optional)</label>
-            <input type="text" id="middle-name" class="form-input" placeholder="e.g., Marie" />
-          </div>
-
-          <div class="form-group flex-grow">
-            <label for="last-name">Last Legal Name *</label>
-            <input type="text" id="last-name" class="form-input" required placeholder="e.g., Doe" />
-          </div>
-
-          <div class="form-group suffix-group">
-            <label for="suffix-trigger">Suffix</label>
-            <div class="custom-select" data-target-input="suffix">
-              <button type="button" id="suffix-trigger" class="custom-select-trigger form-input" aria-haspopup="listbox" aria-expanded="false">
-                <span class="custom-select-value">--</span>
-                <span class="custom-select-chevron" aria-hidden="true">&#9662;</span>
-              </button>
-              <div class="custom-select-menu" role="listbox">
-                <button type="button" class="custom-select-option" data-value="">--</button>
-                <button type="button" class="custom-select-option" data-value="Jr">Jr.</button>
-                <button type="button" class="custom-select-option" data-value="Sr">Sr.</button>
-                <button type="button" class="custom-select-option" data-value="I">I</button>
-                <button type="button" class="custom-select-option" data-value="II">II</button>
-                <button type="button" class="custom-select-option" data-value="III">III</button>
-                <button type="button" class="custom-select-option" data-value="IV">IV</button>
-                <button type="button" class="custom-select-option" data-value="V">V</button>
-                <button type="button" class="custom-select-option" data-value="VI">VI</button>
-                <button type="button" class="custom-select-option" data-value="VII">VII</button>
-                <button type="button" class="custom-select-option" data-value="VIII">VIII</button>
-                <button type="button" class="custom-select-option" data-value="IX">IX</button>
-                <button type="button" class="custom-select-option" data-value="X">X</button>
-              </div>
-              <input type="hidden" id="suffix" value="" />
-            </div>
-          </div>
+        <div class="password-meter" aria-live="polite"><span class="password-meter-bar"><span class="password-meter-fill"></span></span><span class="password-meter-label">Enter a password</span></div>
+        <div class="password-requirement" id="parent-password-requirement">
+          <span class="requirement-icon">&#10005;</span>
+          <span class="requirement-text">At least 8 characters</span>
         </div>
-      </fieldset>
-
-      <fieldset class="form-section">
-        <legend>Birthday</legend>
-
-        <div class="form-row">
-          <div class="form-group flex-grow">
-            <label for="dob-month-trigger">Birth Date *</label>
-            <div class="dob-selectors" id="dob-selectors">
-              <div class="form-group flex-grow dob-part-group" data-part="month">
-                <div class="custom-select" data-target-input="dob-month">
-                  <button type="button" id="dob-month-trigger" class="custom-select-trigger form-input" aria-haspopup="listbox" aria-expanded="false">
-                    <span class="custom-select-value">Month</span>
-                    <span class="custom-select-chevron" aria-hidden="true">&#9662;</span>
-                  </button>
-                  <div class="custom-select-menu" role="listbox"></div>
-                  <input type="hidden" id="dob-month" value="" />
-                </div>
-              </div>
-              <div class="form-group flex-grow dob-part-group" data-part="day">
-                <div class="custom-select" data-target-input="dob-day">
-                  <button type="button" id="dob-day-trigger" class="custom-select-trigger form-input" aria-haspopup="listbox" aria-expanded="false">
-                    <span class="custom-select-value">Day</span>
-                    <span class="custom-select-chevron" aria-hidden="true">&#9662;</span>
-                  </button>
-                  <div class="custom-select-menu" role="listbox"></div>
-                  <input type="hidden" id="dob-day" value="" />
-                </div>
-              </div>
-              <div class="form-group flex-grow dob-part-group" data-part="year">
-                <div class="custom-select" data-target-input="dob-year">
-                  <button type="button" id="dob-year-trigger" class="custom-select-trigger form-input" aria-haspopup="listbox" aria-expanded="false">
-                    <span class="custom-select-value">Year</span>
-                    <span class="custom-select-chevron" aria-hidden="true">&#9662;</span>
-                  </button>
-                  <div class="custom-select-menu" role="listbox"></div>
-                  <input type="hidden" id="dob-year" value="" />
-                </div>
-              </div>
-            </div>
-            <small id="dob-format-hint" class="dob-format-hint">Format: MM / DD / YYYY</small>
-            <input type="hidden" id="dob" required />
-            <span id="age-error" class="error-text" style="display:none; color:var(--mint-accent);">You must be 18+ to register.</span>
-          </div>
+      </div>
+      <div class="form-group">
+        <label for="parent-confirm-password">Repeat Password</label>
+        <div class="password-field">
+          <input type="password" id="parent-confirm-password" name="parent-confirm-password" required />
+          <button type="button" class="password-toggle" data-target="parent-confirm-password" aria-label="Show password" data-visible="false">
+            <span class="icon-eye-off" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a21.8 21.8 0 0 1 5.06-6.06"/><path d="M9.9 4.24A10.94 10.94 0 0 1 12 4c7 0 11 8 11 8a21.8 21.8 0 0 1-2.16 3.19"/><path d="M14.12 14.12a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg></span>
+            <span class="icon-eye" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg></span>
+          </button>
         </div>
-
-        <div class="form-row">
-          <div class="form-group flex-grow">
-            <label for="country-origin-trigger">Country of Origin *</label>
-            <div class="custom-select" data-target-input="country-origin">
-              <button type="button" id="country-origin-trigger" class="custom-select-trigger form-input" aria-haspopup="listbox" aria-expanded="false">
-                <span class="custom-select-value"><span class="fi fi-us"></span> United States</span>
-                <span class="custom-select-chevron" aria-hidden="true">&#9662;</span>
-              </button>
-              <div class="custom-select-menu" role="listbox"></div>
-              <input type="hidden" id="country-origin" value="US" required />
-            </div>
-          </div>
-          <div class="form-group flex-grow">
-            <label for="gender-trigger">Gender *</label>
-            <div class="custom-select" data-target-input="gender">
-              <button type="button" id="gender-trigger" class="custom-select-trigger form-input" aria-haspopup="listbox" aria-expanded="false">
-                <span class="custom-select-value">Select option</span>
-                <span class="custom-select-chevron" aria-hidden="true">&#9662;</span>
-              </button>
-              <div class="custom-select-menu" role="listbox">
-                <button type="button" class="custom-select-option" data-value="">Select option</button>
-                <button type="button" class="custom-select-option" data-value="female">Female</button>
-                <button type="button" class="custom-select-option" data-value="male">Male</button>
-                <button type="button" class="custom-select-option" data-value="non-binary">Non-binary</button>
-                <button type="button" class="custom-select-option" data-value="prefer-not-to-say">Prefer not to say</button>
-              </div>
-              <input type="hidden" id="gender" required value="" />
-            </div>
-          </div>
+        <div class="password-requirement" id="parent-confirm-password-requirement">
+          <span class="requirement-icon">&#10005;</span>
+          <span class="requirement-text">Passwords must match</span>
         </div>
-      </fieldset>
+      </div>
 
       <div class="form-actions">
         <button type="button" id="back-btn" class="pill-button pill-button-mint">Back</button>
@@ -183,6 +74,6 @@
     </form>
   </div>
 
-  <script src="Sign Up Pt 2 Parent.js"></script>
+  <script src="Sign Up Pt 3 Parent.js"></script>
 </body>
 </html>

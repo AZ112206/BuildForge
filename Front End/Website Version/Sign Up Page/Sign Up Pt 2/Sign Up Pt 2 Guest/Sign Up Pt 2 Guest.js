@@ -28,6 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const SOLID_SQ_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="18" height="18" rx="3"/></svg>`;
   const ymdCountries = new Set(["CN", "HU", "IR", "JP", "KR", "LT", "MN", "TW"]);
   const mdyCountries = new Set(["US", "BZ", "FM", "PH", "PW"]);
+  const draftKey = "kidInGuestLegalDraft";
+  const nextRoute = "../../Sign Up Pt 3/Sign Up Pt 3 Guest/Sign Up Pt 3 Guest.html";
 
   today.setHours(0, 0, 0, 0);
 
@@ -36,6 +38,26 @@ document.addEventListener("DOMContentLoaded", () => {
   function dispatchFieldUpdate(input) {
     input.dispatchEvent(new Event("input", { bubbles: true }));
     input.dispatchEvent(new Event("change", { bubbles: true }));
+  }
+
+  function saveDraft() {
+    const draft = {};
+    form.querySelectorAll("input").forEach((input) => {
+      if (input.id) draft[input.id] = input.value;
+    });
+    sessionStorage.setItem(draftKey, JSON.stringify(draft));
+  }
+
+  function restoreDraft() {
+    const draft = JSON.parse(sessionStorage.getItem(draftKey) || "null");
+    if (!draft) return;
+    Object.entries(draft).forEach(([id, value]) => {
+      const input = document.getElementById(id);
+      if (!input) return;
+      input.value = value;
+      selectControllers.get(id)?.setValue(value, false, false);
+    });
+    dispatchFieldUpdate(dobInput);
   }
 
   function updateThemeIcon(theme) {
@@ -385,6 +407,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   initializeDateSelectorsAndCountry();
+  restoreDraft();
   checkFormValidity();
 
   if (themeToggleBtn && themeIcon) {
@@ -431,6 +454,13 @@ document.addEventListener("DOMContentLoaded", () => {
   [firstNameInput, lastNameInput, dobInput, genderSelect, countryOriginInput].forEach((input) => {
     input.addEventListener("input", checkFormValidity);
     input.addEventListener("change", checkFormValidity);
+    input.addEventListener("input", saveDraft);
+    input.addEventListener("change", saveDraft);
+  });
+
+  form.querySelectorAll("input").forEach((input) => {
+    input.addEventListener("input", saveDraft);
+    input.addEventListener("change", saveDraft);
   });
 
   form.addEventListener("submit", (event) => {
@@ -452,6 +482,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     sessionStorage.setItem("kidInUserRole", "guest");
     sessionStorage.setItem("kidInGuestLegalData", JSON.stringify(guestData));
+    window.location.href = nextRoute;
     console.log("Guest legal data captured securely:", guestData);
   });
 });

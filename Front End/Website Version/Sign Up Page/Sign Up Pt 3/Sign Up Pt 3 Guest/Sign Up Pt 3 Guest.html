@@ -38,16 +38,36 @@
       </div>
       <div class="form-group">
         <label for="guest-password">Password</label>
-        <input type="password" id="guest-password" name="guest-password" required />
+        <div class="password-field">
+          <input type="password" id="guest-password" name="guest-password" required />
+          <button type="button" class="password-toggle" data-target="guest-password" aria-label="Show password" data-visible="false">
+            <span class="icon-eye-off" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a21.8 21.8 0 0 1 5.06-6.06"/><path d="M9.9 4.24A10.94 10.94 0 0 1 12 4c7 0 11 8 11 8a21.8 21.8 0 0 1-2.16 3.19"/><path d="M14.12 14.12a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg></span>
+            <span class="icon-eye" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg></span>
+          </button>
+        </div>
+        <div class="password-meter" aria-live="polite"><span class="password-meter-bar"><span class="password-meter-fill"></span></span><span class="password-meter-label">Enter a password</span></div>
+        <div class="password-requirement" id="guest-password-requirement">
+          <span class="requirement-icon">&#10005;</span>
+          <span class="requirement-text">At least 8 characters</span>
+        </div>
       </div>
       <div class="form-group">
         <label for="guest-confirm-password">Repeat Password</label>
-        <input type="password" id="guest-confirm-password" name="guest-confirm-password" required />
+        <div class="password-field">
+          <input type="password" id="guest-confirm-password" name="guest-confirm-password" required />
+          <button type="button" class="password-toggle" data-target="guest-confirm-password" aria-label="Show password" data-visible="false">
+            <span class="icon-eye-off" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a21.8 21.8 0 0 1 5.06-6.06"/><path d="M9.9 4.24A10.94 10.94 0 0 1 12 4c7 0 11 8 11 8a21.8 21.8 0 0 1-2.16 3.19"/><path d="M14.12 14.12a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg></span>
+            <span class="icon-eye" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg></span>
+          </button>
+        </div>
+        <div class="password-requirement" id="guest-confirm-password-requirement">
+          <span class="requirement-icon">&#10005;</span>
+          <span class="requirement-text">Passwords must match</span>
+        </div>
       </div>
       <div class="form-actions">
         <button type="button" id="back-btn" class="pill-button pill-button-mint">Back</button>
         <button type="submit" id="guest-submit-btn" class="pill-button pill-button-indigo" disabled>Next</button>
-      </div>
       </div>
     </form>
   </div>

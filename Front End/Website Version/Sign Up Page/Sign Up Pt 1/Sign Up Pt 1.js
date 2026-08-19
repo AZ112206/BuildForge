@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const transparencyIcon = document.getElementById("transparency-icon");
   const htmlElement = document.documentElement;
 
-  let selectedRole = null;
+  let selectedRole = sessionStorage.getItem("kidInUserRole");
 
   const roleRoutes = {
     student: "../Sign Up Pt 2/Sign Up Pt 2 Student/Sign Up Pt 2 Student.html",
@@ -45,6 +45,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   roleCards.forEach((card) => {
+    if (card.getAttribute("data-role") === selectedRole) {
+      card.classList.add("selected");
+      nextButton.disabled = false;
+    }
+
     card.addEventListener("click", () => {
       roleCards.forEach((c) => c.classList.remove("selected"));
       card.classList.add("selected");
