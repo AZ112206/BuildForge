@@ -9,6 +9,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const transparencyIcon = document.getElementById("transparency-icon");
   const htmlElement = document.documentElement;
 
+  const backRoutes = {
+    student: "../Sign Up Pt 3/Sign Up Pt 3 Student/Sign Up Pt 3 Student.html",
+    parent: "../Sign Up Pt 3/Sign Up Pt 3 Parent/Sign Up Pt 3 Parent.html",
+    guest: "../Sign Up Pt 3/Sign Up Pt 3 Guest/Sign Up Pt 3 Guest.html"
+  };
+
   function goTo(url) {
     const container = document.querySelector(".signup-container");
     if (!container) { window.location.href = url; return; }
@@ -65,7 +71,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   backBtn.addEventListener("click", () => {
-    goTo("../Sign Up Pt 1/Sign Up Pt 1.html");
+    const role = sessionStorage.getItem("kidInUserRole");
+    goTo(backRoutes[role] || "../Sign Up Pt 1/Sign Up Pt 1.html");
   });
 
   form.addEventListener("submit", (event) => { event.preventDefault(); });

@@ -392,7 +392,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (dobValue) {
       const age = validateAge(dobValue);
-      if (age < 18) {
+      if (age < 8 || age > 18) {
         ageErrorSpan.style.display = "block";
         dobSelectorsContainer.classList.add("error");
         isValid = false;
