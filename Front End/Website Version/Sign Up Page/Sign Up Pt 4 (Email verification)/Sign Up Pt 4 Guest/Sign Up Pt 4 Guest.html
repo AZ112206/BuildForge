@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kid-In | Email Verification</title>
-  <link rel="stylesheet" href="Sign Up Pt 4.css" />
+  <title>Kid-In | Guest Email Verification</title>
+  <link rel="stylesheet" href="Sign Up Pt 4 Guest.css" />
 </head>
 <body>
   <div id="gear-toggle-container" class="gear-toggle-container">
@@ -27,27 +27,27 @@
   <div class="signup-container">
     <div class="signup-header">
       <h1>Verify Your Email</h1>
-      <p>Enter the 6-character code we sent to your email to continue.</p>
+      <p>Enter the 6-digit code we sent to your email to continue.</p>
     </div>
-    <form id="verify-form" class="signup-form">
+    <form id="guest-verify-form" class="signup-form">
       <div class="form-group">
-        <label for="code-1">Verification Code</label>
-        <div class="otp-group" role="group" aria-label="6-character verification code">
-          <input type="text" inputmode="text" pattern="[A-Za-z0-9]*" maxlength="1" class="otp-input" id="code-1" name="code-1" autocomplete="one-time-code" />
-          <input type="text" inputmode="text" pattern="[A-Za-z0-9]*" maxlength="1" class="otp-input" id="code-2" name="code-2" />
-          <input type="text" inputmode="text" pattern="[A-Za-z0-9]*" maxlength="1" class="otp-input" id="code-3" name="code-3" />
-          <input type="text" inputmode="text" pattern="[A-Za-z0-9]*" maxlength="1" class="otp-input" id="code-4" name="code-4" />
-          <input type="text" inputmode="text" pattern="[A-Za-z0-9]*" maxlength="1" class="otp-input" id="code-5" name="code-5" />
-          <input type="text" inputmode="text" pattern="[A-Za-z0-9]*" maxlength="1" class="otp-input" id="code-6" name="code-6" />
+        <label for="guest-code-1">Verification Code</label>
+        <div class="otp-group" role="group" aria-label="6-digit verification code">
+          <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="otp-input" id="guest-code-1" name="guest-code-1" autocomplete="one-time-code" />
+          <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="otp-input" id="guest-code-2" name="guest-code-2" />
+          <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="otp-input" id="guest-code-3" name="guest-code-3" />
+          <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="otp-input" id="guest-code-4" name="guest-code-4" />
+          <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="otp-input" id="guest-code-5" name="guest-code-5" />
+          <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="otp-input" id="guest-code-6" name="guest-code-6" />
         </div>
       </div>
       <div class="form-actions">
-        <button type="button" id="back-btn" class="pill-button pill-button-mint">Back (Main Menu)</button>
-        <button type="submit" id="verify-submit-btn" class="pill-button pill-button-indigo" disabled>Next</button>
+        <button type="button" id="back-btn" class="pill-button pill-button-mint">Back</button>
+        <button type="submit" id="guest-submit-btn" class="pill-button pill-button-indigo" disabled>Next</button>
       </div>
     </form>
   </div>
 
-  <script src="Sign Up Pt 4.js"></script>
+  <script src="Sign Up Pt 4 Guest.js"></script>
 </body>
 </html>
