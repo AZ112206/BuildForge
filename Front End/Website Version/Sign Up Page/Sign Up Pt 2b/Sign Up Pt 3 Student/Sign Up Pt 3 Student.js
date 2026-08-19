@@ -1,17 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("adult-signup-form");
-  const email = document.getElementById("adult-email");
-  const password = document.getElementById("adult-password");
-  const confirmPassword = document.getElementById("adult-confirm-password");
-  const submitBtn = document.getElementById("adult-submit-btn");
+  const form = document.getElementById("student-signup-form");
+  const email = document.getElementById("student-email");
+  const password = document.getElementById("student-password");
+  const confirmPassword = document.getElementById("student-confirm-password");
+  const submitBtn = document.getElementById("student-submit-btn");
   const backBtn = document.getElementById("back-btn");
-  const draftKey = "buildForgeAdultAccountDraft";
+  const draftKey = "buildForgeStudentAccountDraft";
   const meter = form.querySelector(".password-meter");
   const meterFill = meter.querySelector(".password-meter-fill");
   const meterLabel = meter.querySelector(".password-meter-label");
-  const requirement = document.getElementById("adult-password-requirement");
+  const requirement = document.getElementById("student-password-requirement");
   const requirementIcon = requirement.querySelector(".requirement-icon");
-  const confirmRequirement = document.getElementById("adult-confirm-password-requirement");
+  const confirmRequirement = document.getElementById("student-confirm-password-requirement");
   const confirmRequirementIcon = confirmRequirement.querySelector(".requirement-icon");
   const themeToggleBtn = document.getElementById("theme-toggle-btn");
   const themeIcon = document.getElementById("theme-icon");
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
     toggle.setAttribute("data-visible", showing ? "true" : "false");
     toggle.setAttribute("aria-label", showing ? "Hide password" : "Show password");
   }));
-  backBtn.addEventListener("click", () => { goTo("../../Sign Up Pt 2/Sign Up Pt 2 Adult/Sign Up Pt 2 Adult.html"); });
-  form.addEventListener("submit", (event) => { event.preventDefault(); sessionStorage.setItem("buildForgeAdultAccountData", JSON.stringify({ email: email.value.trim(), role: "adult" })); });
+  backBtn.addEventListener("click", () => { goTo("../../Sign Up Pt 2a/Sign Up Pt 2 Student/Sign Up Pt 2 Student.html"); });
+  form.addEventListener("submit", (event) => { event.preventDefault(); sessionStorage.setItem("buildForgeStudentAccountData", JSON.stringify({ email: email.value.trim(), role: "student" })); });
   updateMeter();
 });

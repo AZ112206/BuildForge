@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const ymdCountries = new Set(["CN", "HU", "IR", "JP", "KR", "LT", "MN", "TW"]);
   const mdyCountries = new Set(["US", "BZ", "FM", "PH", "PW"]);
   const draftKey = "buildForgeStudentLegalDraft";
-  const nextRoute = "../../Sign Up Pt 3/Sign Up Pt 3 Student/Sign Up Pt 3 Student.html";
+  const nextRoute = "../../Sign Up Pt 2b/Sign Up Pt 3 Student/Sign Up Pt 3 Student.html";
 
   today.setHours(0, 0, 0, 0);
 
@@ -441,7 +441,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (backBtn) {
     backBtn.addEventListener("click", () => {
-      goTo("../../Sign Up Pt 1/Sign Up Pt 1.html");
+      goTo("../../Sign Up Pt 1 (Main Menu)/Sign Up Pt 1.html");
     });
   }
 

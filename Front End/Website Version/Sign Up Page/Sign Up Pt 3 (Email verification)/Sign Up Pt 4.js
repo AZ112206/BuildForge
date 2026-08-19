@@ -10,9 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const htmlElement = document.documentElement;
 
   const backRoutes = {
-    student: "../Sign Up Pt 3/Sign Up Pt 3 Student/Sign Up Pt 3 Student.html",
-    parent: "../Sign Up Pt 3/Sign Up Pt 3 Parent/Sign Up Pt 3 Parent.html",
-    adult: "../Sign Up Pt 3/Sign Up Pt 3 Adult/Sign Up Pt 3 Adult.html"
+    student: "../Sign Up Pt 2b/Sign Up Pt 3 Student/Sign Up Pt 3 Student.html",
+    parent: "../Sign Up Pt 2b/Sign Up Pt 3 Parent/Sign Up Pt 3 Parent.html",
+    adult: "../Sign Up Pt 2b/Sign Up Pt 3 Adult/Sign Up Pt 3 Adult.html"
   };
 
   function goTo(url) {
@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   backBtn.addEventListener("click", () => {
     const role = sessionStorage.getItem("buildForgeUserRole");
-    goTo(backRoutes[role] || "../Sign Up Pt 1/Sign Up Pt 1.html");
+    goTo(backRoutes[role] || "../Sign Up Pt 1 (Main Menu)/Sign Up Pt 1.html");
   });
 
   form.addEventListener("submit", (event) => { event.preventDefault(); });
