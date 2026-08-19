@@ -18,6 +18,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const transparencyToggleBtn = document.getElementById("transparency-toggle-btn");
   const transparencyIcon = document.getElementById("transparency-icon");
   const htmlElement = document.documentElement;
+  function goTo(url) {
+    const container = document.querySelector(".signup-container");
+    if (!container) { window.location.href = url; return; }
+    container.classList.add("page-exit");
+    setTimeout(() => { window.location.href = url; }, 320);
+  }
   const SUN_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72 1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>`;
   const MOON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
   const CLEAR_SQ_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/></svg>`;
@@ -57,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
     toggle.setAttribute("data-visible", showing ? "true" : "false");
     toggle.setAttribute("aria-label", showing ? "Hide password" : "Show password");
   }));
-  backBtn.addEventListener("click", () => { window.location.href = "../../Sign Up Pt 2/Sign Up Pt 2 Parent/Sign Up Pt 2 Parent.html"; });
+  backBtn.addEventListener("click", () => { goTo("../../Sign Up Pt 2/Sign Up Pt 2 Parent/Sign Up Pt 2 Parent.html"); });
   form.addEventListener("submit", (event) => { event.preventDefault(); sessionStorage.setItem("kidInParentAccountData", JSON.stringify({ email: email.value.trim(), role: "parent" })); });
   updateMeter();
 });

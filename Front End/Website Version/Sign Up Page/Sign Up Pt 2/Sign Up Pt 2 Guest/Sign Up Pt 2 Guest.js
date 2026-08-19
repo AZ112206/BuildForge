@@ -18,6 +18,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const transparencyToggleBtn = document.getElementById("transparency-toggle-btn");
   const transparencyIcon = document.getElementById("transparency-icon");
   const htmlElement = document.documentElement;
+  function goTo(url) {
+    const container = document.querySelector(".signup-container");
+    if (!container) { window.location.href = url; return; }
+    container.classList.add("page-exit");
+    setTimeout(() => { window.location.href = url; }, 320);
+  }
   const today = new Date();
   const selectControllers = new Map();
   const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -435,7 +441,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (backBtn) {
     backBtn.addEventListener("click", () => {
-      window.location.href = "../../Sign Up Pt 1/Sign Up Pt 1.html";
+      goTo("../../Sign Up Pt 1/Sign Up Pt 1.html");
     });
   }
 
@@ -482,7 +488,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     sessionStorage.setItem("kidInUserRole", "guest");
     sessionStorage.setItem("kidInGuestLegalData", JSON.stringify(guestData));
-    window.location.href = nextRoute;
     console.log("Guest legal data captured securely:", guestData);
+    goTo(nextRoute);
   });
 });

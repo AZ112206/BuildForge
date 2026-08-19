@@ -9,6 +9,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let selectedRole = sessionStorage.getItem("kidInUserRole");
 
+  function goTo(url) {
+    const container = document.querySelector(".signup-container");
+    if (!container) { window.location.href = url; return; }
+    container.classList.add("page-exit");
+    setTimeout(() => { window.location.href = url; }, 320);
+  }
+
   const roleRoutes = {
     student: "../Sign Up Pt 2/Sign Up Pt 2 Student/Sign Up Pt 2 Student.html",
     parent: "../Sign Up Pt 2/Sign Up Pt 2 Parent/Sign Up Pt 2 Parent.html",
@@ -66,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!selectedRole || !roleRoutes[selectedRole]) return;
 
       sessionStorage.setItem("kidInUserRole", selectedRole);
-      window.location.href = roleRoutes[selectedRole];
+      goTo(roleRoutes[selectedRole]);
     });
   }
 
