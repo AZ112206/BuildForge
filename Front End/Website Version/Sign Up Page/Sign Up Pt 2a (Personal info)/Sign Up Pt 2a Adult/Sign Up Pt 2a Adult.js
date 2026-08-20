@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const dobYearInput = document.getElementById("dob-year");
   const dobSelectorsContainer = document.getElementById("dob-selectors");
   const dobFormatHint = document.getElementById("dob-format-hint");
-  const submitBtn = document.getElementById("parent-submit-btn");
+  const submitBtn = document.getElementById("adult-submit-btn");
   const backBtn = document.getElementById("back-btn");
   const ageErrorSpan = document.getElementById("age-error");
   const themeToggleBtn = document.getElementById("theme-toggle-btn");
@@ -34,8 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const SOLID_SQ_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="18" height="18" rx="3"/></svg>`;
   const ymdCountries = new Set(["CN", "HU", "IR", "JP", "KR", "LT", "MN", "TW"]);
   const mdyCountries = new Set(["US", "BZ", "FM", "PH", "PW"]);
-  const draftKey = "buildForgeParentLegalDraft";
-  const nextRoute = "../../Sign Up Pt 2b/Sign Up Pt 2b Parent/Sign Up Pt 2b Parent.html";
+  const draftKey = "makerplexAdultLegalDraft";
+  const nextRoute = "../../Sign Up Pt 2b (Email and password)/Sign Up Pt 2b Adult/Sign Up Pt 2b Adult.html";
 
   today.setHours(0, 0, 0, 0);
 
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function applySavedTheme() {
-    const savedTheme = localStorage.getItem("buildForgeTheme");
+    const savedTheme = localStorage.getItem("makerplexTheme");
     const preferredTheme = savedTheme || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
     htmlElement.setAttribute("data-theme", preferredTheme);
     updateThemeIcon(preferredTheme);
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function applySavedSurfaceMode() {
-    const savedMode = localStorage.getItem("buildForgeSurfaceMode");
+    const savedMode = localStorage.getItem("makerplexSurfaceMode");
     const preferredMode = savedMode === "solid" || savedMode === "transparent" ? savedMode : "transparent";
     htmlElement.setAttribute("data-surface-mode", preferredMode);
     updateTransparencyIcon(preferredMode);
@@ -423,7 +423,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const currentTheme = htmlElement.getAttribute("data-theme") || "light";
       const nextTheme = currentTheme === "dark" ? "light" : "dark";
       htmlElement.setAttribute("data-theme", nextTheme);
-      localStorage.setItem("buildForgeTheme", nextTheme);
+      localStorage.setItem("makerplexTheme", nextTheme);
       updateThemeIcon(nextTheme);
     });
   }
@@ -434,7 +434,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const nextMode = currentMode === "transparent" ? "solid" : "transparent";
 
       htmlElement.setAttribute("data-surface-mode", nextMode);
-      localStorage.setItem("buildForgeSurfaceMode", nextMode);
+      localStorage.setItem("makerplexSurfaceMode", nextMode);
       updateTransparencyIcon(nextMode);
     });
   }
@@ -472,7 +472,7 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const parentData = {
+    const adultData = {
       prefix: document.getElementById("prefix").value,
       firstName: firstNameInput.value.trim(),
       middleName: document.getElementById("middle-name").value.trim(),
@@ -481,14 +481,14 @@ document.addEventListener("DOMContentLoaded", () => {
       dob: dobInput.value,
       countryOfOrigin: countryOriginInput.value,
       gender: genderSelect.value,
-      role: "parent",
-      verificationStatus: "pending_child_link",
+      role: "adult",
+      verificationStatus: "not_required",
       createdAt: new Date().toISOString()
     };
 
-    sessionStorage.setItem("buildForgeUserRole", "parent");
-    sessionStorage.setItem("buildForgeParentLegalData", JSON.stringify(parentData));
-    console.log("Parent legal data captured securely:", parentData);
+    sessionStorage.setItem("makerplexUserRole", "adult");
+    sessionStorage.setItem("makerplexAdultLegalData", JSON.stringify(adultData));
+    console.log("Adult legal data captured securely:", adultData);
     goTo(nextRoute);
   });
 });

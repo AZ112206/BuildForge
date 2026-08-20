@@ -64,8 +64,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const SOLID_SQ_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3" fill="currentColor"/></svg>`;
 
   function applyAppearance() {
-    const theme = localStorage.getItem("buildForgeTheme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-    const mode = localStorage.getItem("buildForgeSurfaceMode") === "solid" ? "solid" : "transparent";
+    const theme = localStorage.getItem("makerplexTheme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    const mode = localStorage.getItem("makerplexSurfaceMode") === "solid" ? "solid" : "transparent";
     htmlElement.setAttribute("data-theme", theme);
     htmlElement.setAttribute("data-surface-mode", mode);
     themeIcon.innerHTML = theme === "dark" ? SUN_SVG : MOON_SVG;
@@ -74,13 +74,13 @@ document.addEventListener("DOMContentLoaded", () => {
   themeToggleBtn.addEventListener("click", () => {
     const theme = htmlElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
     htmlElement.setAttribute("data-theme", theme);
-    localStorage.setItem("buildForgeTheme", theme);
+    localStorage.setItem("makerplexTheme", theme);
     themeIcon.innerHTML = theme === "dark" ? SUN_SVG : MOON_SVG;
   });
   transparencyToggleBtn.addEventListener("click", () => {
     const mode = htmlElement.getAttribute("data-surface-mode") === "transparent" ? "solid" : "transparent";
     htmlElement.setAttribute("data-surface-mode", mode);
-    localStorage.setItem("buildForgeSurfaceMode", mode);
+    localStorage.setItem("makerplexSurfaceMode", mode);
     transparencyIcon.innerHTML = mode === "transparent" ? CLEAR_SQ_SVG : SOLID_SQ_SVG;
   });
   applyAppearance();
@@ -213,9 +213,9 @@ document.addEventListener("DOMContentLoaded", () => {
   /* Check for saved country from earlier sign up steps */
   let initialIso = "US";
   const savedAccountData = JSON.parse(
-    sessionStorage.getItem("buildForgeStudentAccountData") ||
-    sessionStorage.getItem("buildForgeAdultAccountData") ||
-    sessionStorage.getItem("buildForgeParentAccountData") ||
+    sessionStorage.getItem("makerplexStudentAccountData") ||
+    sessionStorage.getItem("makerplexAdultAccountData") ||
+    sessionStorage.getItem("makerplexParentAccountData") ||
     "null"
   );
   if (savedAccountData && savedAccountData.countryOfOrigin) {
@@ -313,7 +313,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   skipBtn.addEventListener("click", () => {
-    sessionStorage.setItem("buildForgePhoneData", JSON.stringify({ skipped: true }));
+    sessionStorage.setItem("makerplexPhoneData", JSON.stringify({ skipped: true }));
     goTo("../Sign Up Pt 5 (Welcome)/Sign Up Pt 5.html");
   });
 
@@ -324,7 +324,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const line = phoneLine.value.trim();
 
     if (!area && !prefix && !line) {
-      sessionStorage.setItem("buildForgePhoneData", JSON.stringify({ skipped: true }));
+      sessionStorage.setItem("makerplexPhoneData", JSON.stringify({ skipped: true }));
       goTo("../Sign Up Pt 5 (Welcome)/Sign Up Pt 5.html");
       return;
     }
@@ -350,7 +350,7 @@ document.addEventListener("DOMContentLoaded", () => {
       line: line,
       fullNumber: `${countryCodeInput.value} (${area}) ${prefix}-${line}`
     };
-    sessionStorage.setItem("buildForgePhoneData", JSON.stringify(phoneData));
+    sessionStorage.setItem("makerplexPhoneData", JSON.stringify(phoneData));
     goTo("../Sign Up Pt 4b (Phone number verification)/Sign Up Pt 4b.html");
   });
 
