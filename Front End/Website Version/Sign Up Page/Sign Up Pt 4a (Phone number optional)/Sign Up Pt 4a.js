@@ -314,7 +314,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   skipBtn.addEventListener("click", () => {
     sessionStorage.setItem("buildForgePhoneData", JSON.stringify({ skipped: true }));
-    goTo("../Sign Up Pt 1 (Main Menu)/Sign Up Pt 1.html");
+    goTo("../Sign Up Pt 5 (Welcome)/Sign Up Pt 5.html");
   });
 
   form.addEventListener("submit", (event) => {
@@ -325,7 +325,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!area && !prefix && !line) {
       sessionStorage.setItem("buildForgePhoneData", JSON.stringify({ skipped: true }));
-      goTo("../Sign Up Pt 1 (Main Menu)/Sign Up Pt 1.html");
+      goTo("../Sign Up Pt 5 (Welcome)/Sign Up Pt 5.html");
       return;
     }
 
@@ -351,7 +351,7 @@ document.addEventListener("DOMContentLoaded", () => {
       fullNumber: `${countryCodeInput.value} (${area}) ${prefix}-${line}`
     };
     sessionStorage.setItem("buildForgePhoneData", JSON.stringify(phoneData));
-    goTo("../Sign Up Pt 1 (Main Menu)/Sign Up Pt 1.html");
+    goTo("../Sign Up Pt 4b (Phone number verification)/Sign Up Pt 4b.html");
   });
 
   updateSubmitState();
