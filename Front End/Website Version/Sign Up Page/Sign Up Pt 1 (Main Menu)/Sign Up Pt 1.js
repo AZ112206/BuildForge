@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const transparencyIcon = document.getElementById("transparency-icon");
   const htmlElement = document.documentElement;
 
-  let selectedRole = sessionStorage.getItem("buildForgeUserRole");
+  let selectedRole = sessionStorage.getItem("makerpodsUserRole");
 
   function goTo(url) {
     const container = document.querySelector(".signup-container");
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function applySavedTheme() {
-    const savedTheme = localStorage.getItem("buildForgeTheme");
+    const savedTheme = localStorage.getItem("makerpodsTheme");
     const preferredTheme = savedTheme || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
     htmlElement.setAttribute("data-theme", preferredTheme);
     updateThemeIcon(preferredTheme);
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function applySavedSurfaceMode() {
-    const savedMode = localStorage.getItem("buildForgeSurfaceMode");
+    const savedMode = localStorage.getItem("makerpodsSurfaceMode");
     const preferredMode = savedMode === "solid" || savedMode === "transparent" ? savedMode : "transparent";
     htmlElement.setAttribute("data-surface-mode", preferredMode);
     updateTransparencyIcon(preferredMode);
@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
     nextButton.addEventListener("click", () => {
       if (!selectedRole || !roleRoutes[selectedRole]) return;
 
-      sessionStorage.setItem("buildForgeUserRole", selectedRole);
+      sessionStorage.setItem("makerpodsUserRole", selectedRole);
       goTo(roleRoutes[selectedRole]);
     });
   }
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const nextTheme = currentTheme === "dark" ? "light" : "dark";
 
       htmlElement.setAttribute("data-theme", nextTheme);
-      localStorage.setItem("buildForgeTheme", nextTheme);
+      localStorage.setItem("makerpodsTheme", nextTheme);
       updateThemeIcon(nextTheme);
     });
   }
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const nextMode = currentMode === "transparent" ? "solid" : "transparent";
 
       htmlElement.setAttribute("data-surface-mode", nextMode);
-      localStorage.setItem("buildForgeSurfaceMode", nextMode);
+      localStorage.setItem("makerpodsSurfaceMode", nextMode);
       updateTransparencyIcon(nextMode);
     });
   }

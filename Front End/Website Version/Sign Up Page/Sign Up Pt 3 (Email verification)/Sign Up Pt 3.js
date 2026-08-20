@@ -28,15 +28,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const SOLID_SQ_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3" fill="currentColor"/></svg>`;
 
   function applyAppearance() {
-    const theme = localStorage.getItem("buildForgeTheme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-    const mode = localStorage.getItem("buildForgeSurfaceMode") === "solid" ? "solid" : "transparent";
+    const theme = localStorage.getItem("makerpodsTheme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    const mode = localStorage.getItem("makerpodsSurfaceMode") === "solid" ? "solid" : "transparent";
     htmlElement.setAttribute("data-theme", theme);
     htmlElement.setAttribute("data-surface-mode", mode);
     themeIcon.innerHTML = theme === "dark" ? SUN_SVG : MOON_SVG;
     transparencyIcon.innerHTML = mode === "transparent" ? CLEAR_SQ_SVG : SOLID_SQ_SVG;
   }
-  themeToggleBtn.addEventListener("click", () => { const theme = htmlElement.getAttribute("data-theme") === "dark" ? "light" : "dark"; htmlElement.setAttribute("data-theme", theme); localStorage.setItem("buildForgeTheme", theme); themeIcon.innerHTML = theme === "dark" ? SUN_SVG : MOON_SVG; });
-  transparencyToggleBtn.addEventListener("click", () => { const mode = htmlElement.getAttribute("data-surface-mode") === "transparent" ? "solid" : "transparent"; htmlElement.setAttribute("data-surface-mode", mode); localStorage.setItem("buildForgeSurfaceMode", mode); transparencyIcon.innerHTML = mode === "transparent" ? CLEAR_SQ_SVG : SOLID_SQ_SVG; });
+  themeToggleBtn.addEventListener("click", () => { const theme = htmlElement.getAttribute("data-theme") === "dark" ? "light" : "dark"; htmlElement.setAttribute("data-theme", theme); localStorage.setItem("makerpodsTheme", theme); themeIcon.innerHTML = theme === "dark" ? SUN_SVG : MOON_SVG; });
+  transparencyToggleBtn.addEventListener("click", () => { const mode = htmlElement.getAttribute("data-surface-mode") === "transparent" ? "solid" : "transparent"; htmlElement.setAttribute("data-surface-mode", mode); localStorage.setItem("makerpodsSurfaceMode", mode); transparencyIcon.innerHTML = mode === "transparent" ? CLEAR_SQ_SVG : SOLID_SQ_SVG; });
   applyAppearance();
 
   function updateSubmitState() {
@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   backBtn.addEventListener("click", () => {
-    const role = sessionStorage.getItem("buildForgeUserRole");
+    const role = sessionStorage.getItem("makerpodsUserRole");
     goTo(backRoutes[role] || "../Sign Up Pt 1 (Main Menu)/Sign Up Pt 1.html");
   });
 
