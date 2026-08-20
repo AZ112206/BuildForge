@@ -10,9 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const htmlElement = document.documentElement;
 
   const backRoutes = {
-    student: "../Sign Up Pt 2b (Email and password)/Sign Up Pt 2b Student/Sign Up Pt 2b Student.html",
-    parent: "../Sign Up Pt 2b (Email and password)/Sign Up Pt 2b Parent/Sign Up Pt 2b Parent.html",
-    adult: "../Sign Up Pt 2b (Email and password)/Sign Up Pt 2b Adult/Sign Up Pt 2b Adult.html"
+    student: "../Sign Up Pt 2b/Sign Up Pt 2b Student/Sign Up Pt 2b Student.html",
+    parent: "../Sign Up Pt 2b/Sign Up Pt 2b Parent/Sign Up Pt 2b Parent.html",
+    adult: "../Sign Up Pt 2b/Sign Up Pt 2b Adult/Sign Up Pt 2b Adult.html"
   };
 
   function goTo(url) {
@@ -28,15 +28,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const SOLID_SQ_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3" fill="currentColor"/></svg>`;
 
   function applyAppearance() {
-    const theme = localStorage.getItem("makerplexTheme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-    const mode = localStorage.getItem("makerplexSurfaceMode") === "solid" ? "solid" : "transparent";
+    const theme = localStorage.getItem("buildForgeTheme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    const mode = localStorage.getItem("buildForgeSurfaceMode") === "solid" ? "solid" : "transparent";
     htmlElement.setAttribute("data-theme", theme);
     htmlElement.setAttribute("data-surface-mode", mode);
     themeIcon.innerHTML = theme === "dark" ? SUN_SVG : MOON_SVG;
     transparencyIcon.innerHTML = mode === "transparent" ? CLEAR_SQ_SVG : SOLID_SQ_SVG;
   }
-  themeToggleBtn.addEventListener("click", () => { const theme = htmlElement.getAttribute("data-theme") === "dark" ? "light" : "dark"; htmlElement.setAttribute("data-theme", theme); localStorage.setItem("makerplexTheme", theme); themeIcon.innerHTML = theme === "dark" ? SUN_SVG : MOON_SVG; });
-  transparencyToggleBtn.addEventListener("click", () => { const mode = htmlElement.getAttribute("data-surface-mode") === "transparent" ? "solid" : "transparent"; htmlElement.setAttribute("data-surface-mode", mode); localStorage.setItem("makerplexSurfaceMode", mode); transparencyIcon.innerHTML = mode === "transparent" ? CLEAR_SQ_SVG : SOLID_SQ_SVG; });
+  themeToggleBtn.addEventListener("click", () => { const theme = htmlElement.getAttribute("data-theme") === "dark" ? "light" : "dark"; htmlElement.setAttribute("data-theme", theme); localStorage.setItem("buildForgeTheme", theme); themeIcon.innerHTML = theme === "dark" ? SUN_SVG : MOON_SVG; });
+  transparencyToggleBtn.addEventListener("click", () => { const mode = htmlElement.getAttribute("data-surface-mode") === "transparent" ? "solid" : "transparent"; htmlElement.setAttribute("data-surface-mode", mode); localStorage.setItem("buildForgeSurfaceMode", mode); transparencyIcon.innerHTML = mode === "transparent" ? CLEAR_SQ_SVG : SOLID_SQ_SVG; });
   applyAppearance();
 
   function updateSubmitState() {
@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   backBtn.addEventListener("click", () => {
-    const role = sessionStorage.getItem("makerplexUserRole");
+    const role = sessionStorage.getItem("buildForgeUserRole");
     goTo(backRoutes[role] || "../Sign Up Pt 1 (Main Menu)/Sign Up Pt 1.html");
   });
 

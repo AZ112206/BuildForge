@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const transparencyIcon = document.getElementById("transparency-icon");
   const htmlElement = document.documentElement;
 
-  let selectedRole = sessionStorage.getItem("makerplexUserRole");
+  let selectedRole = sessionStorage.getItem("buildForgeUserRole");
 
   function goTo(url) {
     const container = document.querySelector(".signup-container");
@@ -17,9 +17,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const roleRoutes = {
-    student: "../Sign Up Pt 2a (Personal info)/Sign Up Pt 2a Student/Sign Up Pt 2a Student.html",
-    parent: "../Sign Up Pt 2a (Personal info)/Sign Up Pt 2a Parent/Sign Up Pt 2a Parent.html",
-    adult: "../Sign Up Pt 2a (Personal info)/Sign Up Pt 2a Adult/Sign Up Pt 2a Adult.html"
+    student: "../Sign Up Pt 2a/Sign Up Pt 2a Student/Sign Up Pt 2a Student.html",
+    parent: "../Sign Up Pt 2a/Sign Up Pt 2a Parent/Sign Up Pt 2a Parent.html",
+    adult: "../Sign Up Pt 2a/Sign Up Pt 2a Adult/Sign Up Pt 2a Adult.html"
   };
 
   const SUN_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>`;
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function applySavedTheme() {
-    const savedTheme = localStorage.getItem("makerplexTheme");
+    const savedTheme = localStorage.getItem("buildForgeTheme");
     const preferredTheme = savedTheme || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
     htmlElement.setAttribute("data-theme", preferredTheme);
     updateThemeIcon(preferredTheme);
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function applySavedSurfaceMode() {
-    const savedMode = localStorage.getItem("makerplexSurfaceMode");
+    const savedMode = localStorage.getItem("buildForgeSurfaceMode");
     const preferredMode = savedMode === "solid" || savedMode === "transparent" ? savedMode : "transparent";
     htmlElement.setAttribute("data-surface-mode", preferredMode);
     updateTransparencyIcon(preferredMode);
@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
     nextButton.addEventListener("click", () => {
       if (!selectedRole || !roleRoutes[selectedRole]) return;
 
-      sessionStorage.setItem("makerplexUserRole", selectedRole);
+      sessionStorage.setItem("buildForgeUserRole", selectedRole);
       goTo(roleRoutes[selectedRole]);
     });
   }
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const nextTheme = currentTheme === "dark" ? "light" : "dark";
 
       htmlElement.setAttribute("data-theme", nextTheme);
-      localStorage.setItem("makerplexTheme", nextTheme);
+      localStorage.setItem("buildForgeTheme", nextTheme);
       updateThemeIcon(nextTheme);
     });
   }
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const nextMode = currentMode === "transparent" ? "solid" : "transparent";
 
       htmlElement.setAttribute("data-surface-mode", nextMode);
-      localStorage.setItem("makerplexSurfaceMode", nextMode);
+      localStorage.setItem("buildForgeSurfaceMode", nextMode);
       updateTransparencyIcon(nextMode);
     });
   }
