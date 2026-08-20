@@ -75,6 +75,11 @@ document.addEventListener("DOMContentLoaded", () => {
     goTo(backRoutes[role] || "../Sign Up Pt 1 (Main Menu)/Sign Up Pt 1.html");
   });
 
-  form.addEventListener("submit", (event) => { event.preventDefault(); });
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (!submitBtn.disabled) {
+      goTo("../Sign Up Pt 4a (Phone number optional)/Sign Up Pt 4a.html");
+    }
+  });
   updateSubmitState();
 });

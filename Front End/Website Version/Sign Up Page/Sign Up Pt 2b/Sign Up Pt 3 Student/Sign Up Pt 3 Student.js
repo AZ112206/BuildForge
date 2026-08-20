@@ -64,6 +64,11 @@ document.addEventListener("DOMContentLoaded", () => {
     toggle.setAttribute("aria-label", showing ? "Hide password" : "Show password");
   }));
   backBtn.addEventListener("click", () => { goTo("../../Sign Up Pt 2a/Sign Up Pt 2 Student/Sign Up Pt 2 Student.html"); });
-  form.addEventListener("submit", (event) => { event.preventDefault(); sessionStorage.setItem("buildForgeStudentAccountData", JSON.stringify({ email: email.value.trim(), role: "student" })); });
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    sessionStorage.setItem("buildForgeUserRole", "student");
+    sessionStorage.setItem("buildForgeStudentAccountData", JSON.stringify({ email: email.value.trim(), role: "student" }));
+    goTo("../../Sign Up Pt 3 (Email verification)/Sign Up Pt 4.html");
+  });
   updateMeter();
 });
