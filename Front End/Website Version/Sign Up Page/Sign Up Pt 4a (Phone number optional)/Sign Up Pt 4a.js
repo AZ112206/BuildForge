@@ -319,13 +319,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
+    const area = phoneAreaCode.value.trim();
+    const prefix = phonePrefix.value.trim();
+    const line = phoneLine.value.trim();
+
+    if (!area && !prefix && !line) {
+      sessionStorage.setItem("buildForgePhoneData", JSON.stringify({ skipped: true }));
+      goTo("../Sign Up Pt 1 (Main Menu)/Sign Up Pt 1.html");
+      return;
+    }
+
+    if (area.length < 3) {
+      phoneAreaCode.focus();
+      return;
+    }
+    if (prefix.length < 3) {
+      phonePrefix.focus();
+      return;
+    }
+    if (line.length < 4) {
+      phoneLine.focus();
+      return;
+    }
+
     const phoneData = {
       countryIso: countryIsoInput.value,
       countryCode: countryCodeInput.value,
-      areaCode: phoneAreaCode.value,
-      prefix: phonePrefix.value,
-      line: phoneLine.value,
-      fullNumber: `${countryCodeInput.value} (${phoneAreaCode.value}) ${phonePrefix.value}-${phoneLine.value}`
+      areaCode: area,
+      prefix: prefix,
+      line: line,
+      fullNumber: `${countryCodeInput.value} (${area}) ${prefix}-${line}`
     };
     sessionStorage.setItem("buildForgePhoneData", JSON.stringify(phoneData));
     goTo("../Sign Up Pt 1 (Main Menu)/Sign Up Pt 1.html");
