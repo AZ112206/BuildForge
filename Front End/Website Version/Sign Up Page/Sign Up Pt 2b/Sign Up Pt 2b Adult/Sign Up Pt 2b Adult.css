@@ -53,7 +53,9 @@
 
 [data-surface-mode="solid"] .signup-form input[type="email"],
 [data-surface-mode="solid"] .signup-form input[type="password"],
-[data-surface-mode="solid"] .password-field input[type="text"] { background: rgba(var(--card-bg-rgb), 0.96); }
+[data-surface-mode="solid"] .password-field input[type="text"] {
+  background: rgba(var(--card-bg-rgb), 0.96);
+}
 
 [data-surface-mode="solid"] .custom-select-menu {
   background: rgba(var(--card-bg-rgb), 0.95);
@@ -202,11 +204,24 @@ body {
 
 .signup-form input[type="email"],
 .signup-form input[type="password"],
-.password-field input[type="text"] { width: 100%; padding: 14px 16px; background: rgba(var(--card-bg-rgb), 0.14); border: 2px solid var(--border-subtle); border-radius: 14px; color: var(--text-main); font-size: 15px; box-sizing: border-box; }
+.password-field input[type="text"] {
+  width: 100%;
+  padding: 14px 16px;
+  background: rgba(var(--card-bg-rgb), 0.14);
+  border: 2px solid var(--border-subtle);
+  border-radius: 14px;
+  color: var(--text-main);
+  font-size: 15px;
+  box-sizing: border-box;
+}
 
 .signup-form input[type="email"]:focus,
 .signup-form input[type="password"]:focus,
-.password-field input[type="text"]:focus { outline: none; border-color: var(--primary-indigo); box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15); }
+.password-field input[type="text"]:focus {
+  outline: none;
+  border-color: var(--primary-indigo);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+}
 
 .form-input:focus {
   outline: none;
@@ -474,12 +489,31 @@ body {
   }
 }
 
-.signup-form { display: flex; flex-direction: column; gap: 20px; }
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .password-field { position: relative; }
+.password-field .form-input,
 .password-field input { padding-right: 52px; }
 input[type="password"]::-ms-reveal,
 input[type="password"]::-ms-clear { display: none; }
-.password-toggle { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); border: 0; background: transparent; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 4px; }
+.password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 0;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
 .password-toggle .icon-eye { display: none; }
 .password-toggle .icon-eye-off { display: inline-flex; }
 .password-toggle[data-visible="true"] .icon-eye { display: inline-flex; }

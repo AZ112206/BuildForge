@@ -1,17 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("parent-signup-form");
-  const email = document.getElementById("parent-email");
-  const password = document.getElementById("parent-password");
-  const confirmPassword = document.getElementById("parent-confirm-password");
-  const submitBtn = document.getElementById("parent-submit-btn");
+  const form = document.getElementById("adult-signup-form");
+  const email = document.getElementById("adult-email");
+  const password = document.getElementById("adult-password");
+  const confirmPassword = document.getElementById("adult-confirm-password");
+  const submitBtn = document.getElementById("adult-submit-btn");
   const backBtn = document.getElementById("back-btn");
-  const draftKey = "buildForgeParentAccountDraft";
+  const draftKey = "buildForgeAdultAccountDraft";
   const meter = form.querySelector(".password-meter");
   const meterFill = meter.querySelector(".password-meter-fill");
   const meterLabel = meter.querySelector(".password-meter-label");
-  const requirement = document.getElementById("parent-password-requirement");
+  const requirement = document.getElementById("adult-password-requirement");
   const requirementIcon = requirement.querySelector(".requirement-icon");
-  const confirmRequirement = document.getElementById("parent-confirm-password-requirement");
+  const confirmRequirement = document.getElementById("adult-confirm-password-requirement");
   const confirmRequirementIcon = confirmRequirement.querySelector(".requirement-icon");
   const themeToggleBtn = document.getElementById("theme-toggle-btn");
   const themeIcon = document.getElementById("theme-icon");
@@ -63,12 +63,12 @@ document.addEventListener("DOMContentLoaded", () => {
     toggle.setAttribute("data-visible", showing ? "true" : "false");
     toggle.setAttribute("aria-label", showing ? "Hide password" : "Show password");
   }));
-  backBtn.addEventListener("click", () => { goTo("../../Sign Up Pt 2a/Sign Up Pt 2 Parent/Sign Up Pt 2 Parent.html"); });
+  backBtn.addEventListener("click", () => { goTo("../../Sign Up Pt 2a/Sign Up Pt 2a Adult/Sign Up Pt 2a Adult.html"); });
   form.addEventListener("submit", (event) => {
     event.preventDefault();
-    sessionStorage.setItem("buildForgeUserRole", "parent");
-    sessionStorage.setItem("buildForgeParentAccountData", JSON.stringify({ email: email.value.trim(), role: "parent" }));
-    goTo("../../Sign Up Pt 3 (Email verification)/Sign Up Pt 4.html");
+    sessionStorage.setItem("buildForgeUserRole", "adult");
+    sessionStorage.setItem("buildForgeAdultAccountData", JSON.stringify({ email: email.value.trim(), role: "adult" }));
+    goTo("../../Sign Up Pt 3 (Email verification)/Sign Up Pt 3.html");
   });
   updateMeter();
 });

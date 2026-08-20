@@ -309,7 +309,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* Navigation */
   backBtn.addEventListener("click", () => {
-    goTo("../Sign Up Pt 3 (Email verification)/Sign Up Pt 4.html");
+    goTo("../Sign Up Pt 3 (Email verification)/Sign Up Pt 3.html");
   });
 
   skipBtn.addEventListener("click", () => {

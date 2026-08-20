@@ -10,9 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const htmlElement = document.documentElement;
 
   const backRoutes = {
-    student: "../Sign Up Pt 2b/Sign Up Pt 3 Student/Sign Up Pt 3 Student.html",
-    parent: "../Sign Up Pt 2b/Sign Up Pt 3 Parent/Sign Up Pt 3 Parent.html",
-    adult: "../Sign Up Pt 2b/Sign Up Pt 3 Adult/Sign Up Pt 3 Adult.html"
+    student: "../Sign Up Pt 2b/Sign Up Pt 2b Student/Sign Up Pt 2b Student.html",
+    parent: "../Sign Up Pt 2b/Sign Up Pt 2b Parent/Sign Up Pt 2b Parent.html",
+    adult: "../Sign Up Pt 2b/Sign Up Pt 2b Adult/Sign Up Pt 2b Adult.html"
   };
 
   function goTo(url) {
