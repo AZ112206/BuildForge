@@ -1,1 +1,1 @@
-(the "LinkedIn for kids/teens focusing on collaborative project-building and safe peer networking")
+(the "LinkedIn for kids, teens, and adults" focusing on collaborative project-building and safe peer networking)

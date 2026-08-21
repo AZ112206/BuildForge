@@ -1,0 +1,283 @@
+/* ==========================================
+   Makerpods Design System: Dual-Theme Engine
+   (kept in sync with the Sign Up flow pages)
+   ========================================== */
+
+:root {
+  --primary-indigo: #6366F1;
+  --indigo-hover: #4F46E5;
+  --mint-accent: #10B981;
+
+  --bg-canvas: #F8FAFC;
+  --card-bg: #FFFFFF;
+  --card-bg-rgb: 255, 255, 255;
+  --border-subtle: #E2E8F0;
+  --text-main: #1E293B;
+  --text-muted: #64748B;
+
+  --mesh-1: rgba(99, 102, 241, 0.35);
+  --mesh-2: rgba(16, 185, 129, 0.25);
+  --mesh-3: rgba(79, 70, 229, 0.2);
+}
+
+[data-theme="dark"] {
+  --primary-indigo: #818CF8;
+  --indigo-hover: #6366F1;
+  --mint-accent: #34D399;
+
+  --bg-canvas: #090D16;
+  --card-bg: #111827;
+  --card-bg-rgb: 17, 24, 39;
+  --border-subtle: #1F2937;
+  --text-main: #F9FAFB;
+  --text-muted: #9CA3AF;
+
+  --mesh-1: rgba(99, 102, 241, 0.25);
+  --mesh-2: rgba(16, 185, 129, 0.15);
+  --mesh-3: rgba(79, 70, 229, 0.22);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --primary-indigo: #818CF8;
+    --indigo-hover: #6366F1;
+    --mint-accent: #34D399;
+
+    --bg-canvas: #090D16;
+    --card-bg: #111827;
+    --card-bg-rgb: 17, 24, 39;
+    --border-subtle: #1F2937;
+    --text-main: #F9FAFB;
+    --text-muted: #9CA3AF;
+
+    --mesh-1: rgba(99, 102, 241, 0.25);
+    --mesh-2: rgba(16, 185, 129, 0.15);
+    --mesh-3: rgba(79, 70, 229, 0.22);
+  }
+}
+
+[data-surface-mode="transparent"] .home-card {
+  background: rgba(var(--card-bg-rgb), 0.36);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.24), 0 0 0 1px var(--border-subtle);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  background-color: var(--bg-canvas);
+  background-image:
+    radial-gradient(at 15% 15%, var(--mesh-1) 0px, transparent 55%),
+    radial-gradient(at 85% 85%, var(--mesh-2) 0px, transparent 55%),
+    radial-gradient(at 50% 50%, var(--mesh-3) 0px, transparent 70%);
+  background-attachment: fixed;
+  transition: background-color 0.3s ease;
+}
+
+/* ==========================================
+   Hero Card
+   ========================================== */
+
+.home-card {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  margin: 24px;
+  padding: 56px 40px;
+  text-align: center;
+  background: rgba(var(--card-bg-rgb), 0.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 32px;
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.35),
+    0 0 0 1px var(--border-subtle);
+  transition: background 0.3s ease, border-color 0.3s ease;
+  animation: hero-fade-in 0.5s ease both;
+}
+
+@keyframes hero-fade-in {
+  from { opacity: 0; transform: translateY(18px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-card {
+    animation: none;
+  }
+}
+
+.hero-logo {
+  height: 120px;
+  width: auto;
+  margin-bottom: 24px;
+}
+
+.eyebrow {
+  color: var(--mint-accent);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 12px 0;
+}
+
+.home-card h1 {
+  color: var(--text-main);
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin: 0 0 16px 0;
+  line-height: 1.15;
+}
+
+.hero-message {
+  color: var(--text-muted);
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0 auto 36px auto;
+  max-width: 460px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.pill-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-indigo);
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 16px 40px;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3);
+}
+
+.pill-button:hover {
+  background-color: var(--indigo-hover);
+  box-shadow: 0 6px 18px rgba(99, 102, 241, 0.4);
+}
+
+.pill-button:active {
+  transform: scale(0.98);
+}
+
+.ghost-link {
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.ghost-link:hover {
+  color: var(--primary-indigo);
+}
+
+/* ==========================================
+   Gear Settings Toggle (FAB)
+   ========================================== */
+
+.gear-toggle-container {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  z-index: 100;
+}
+
+.gear-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transform: translateY(20px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s ease;
+}
+
+.gear-toggle-container:hover .gear-options {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.gear-main-btn,
+.gear-option-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(var(--card-bg-rgb), 0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 2px solid var(--border-subtle);
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gear-option-btn {
+  width: 46px;
+  height: 46px;
+}
+
+.gear-option-btn span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gear-main-btn:hover {
+  transform: rotate(45deg) scale(1.08);
+}
+
+/* Light mode: indigo hover */
+:root:not([data-theme="dark"]) .gear-option-btn:hover {
+  background-color: var(--primary-indigo);
+  border-color: var(--primary-indigo);
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.35);
+  transform: scale(1.12);
+}
+
+/* Dark mode: mint hover */
+[data-theme="dark"] .gear-option-btn:hover {
+  background-color: var(--mint-accent);
+  border-color: var(--mint-accent);
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(52, 211, 153, 0.4);
+  transform: scale(1.12);
+}
+
+[data-surface-mode="transparent"] .gear-main-btn,
+[data-surface-mode="transparent"] .gear-option-btn {
+  background: rgba(var(--card-bg-rgb), 0.3);
+}

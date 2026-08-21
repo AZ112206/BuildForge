@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Makerpods - Home</title>
+  <link rel="stylesheet" href="../assets/css/site-logo.css" />
+  <link rel="stylesheet" href="Home Page.css" />
+</head>
+<body>
+
+  <!-- Site Logo: fixed top-left, links back to Home on every page -->
+  <a href="Home Page.html" class="site-logo-link" aria-label="Makerpods Home">
+    <img src="../assets/images/makerpods-logo.png" alt="Makerpods" class="site-logo-img">
+  </a>
+
+  <!-- Gear Settings Toggle: hover to reveal theme & transparency options -->
+  <div id="gear-toggle-container" class="gear-toggle-container">
+    <div class="gear-options">
+      <button id="theme-toggle-btn" class="gear-option-btn" aria-label="Toggle Dark/Light Mode">
+        <span id="theme-icon"></span>
+      </button>
+      <button id="transparency-toggle-btn" class="gear-option-btn" aria-label="Toggle Solid/Transparent Mode">
+        <span id="transparency-icon"></span>
+      </button>
+    </div>
+    <button class="gear-main-btn" aria-label="Display settings">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+      </svg>
+    </button>
+  </div>
+
+  <main class="home-card">
+    <img src="../assets/images/makerpods-logo.png" alt="Makerpods" class="hero-logo">
+    <p class="eyebrow">Built for every kind of creator</p>
+    <h1>Build. Collaborate. Grow &mdash; together.</h1>
+    <p class="hero-message">
+      Makerpods is the LinkedIn for kids, teens, and adults &mdash; a place to build
+      creative projects, showcase your skill tree, and connect safely with makers
+      of every age.
+    </p>
+    <div class="hero-actions">
+      <a class="pill-button" href="../Sign Up Page/Sign Up Pt 1 (Main Menu)/Sign Up Pt 1.html">Get Started</a>
+      <a class="ghost-link" href="../Log In Page/Log In.html">Already have an account? Log in</a>
+    </div>
+  </main>
+
+  <script src="Home Page.js"></script>
+</body>
+</html>
