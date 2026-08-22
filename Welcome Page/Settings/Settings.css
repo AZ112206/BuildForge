@@ -1,29 +1,26 @@
-/* ==========================================
-   Makerpods Design System: Dual-Theme Engine
+﻿/* ==========================================
+   Makerpods Settings Page: Dual-Theme Engine
    ========================================== */
 
-/* 1. Default: Original Light Theme Variables */
 :root {
-  --primary-indigo: #6366F1;     
-  --indigo-hover: #4F46E5;       
-  --mint-accent: #10B981;        
-  
-  --bg-canvas: #F8FAFC;          
-  --card-bg: #FFFFFF;            
+  --primary-indigo: #6366F1;
+  --indigo-hover: #4F46E5;
+  --mint-accent: #10B981;
+
+  --bg-canvas: #F8FAFC;
+  --card-bg: #FFFFFF;
   --card-bg-rgb: 255, 255, 255;
-  --border-subtle: #E2E8F0;      
-  --text-main: #1E293B;          
-  --text-muted: #64748B;         
+  --border-subtle: #E2E8F0;
+  --text-main: #1E293B;
+  --text-muted: #64748B;
   --card-hover-shadow: rgba(99, 102, 241, 0.18);
 
-  /* Light Mesh Gradients */
   --mesh-1: rgba(99, 102, 241, 0.35);
   --mesh-2: rgba(16, 185, 129, 0.25);
   --mesh-3: rgba(79, 70, 229, 0.2);
 }
 
-/* 2. New Dark Mode Theme Variables */
-[data-theme="dark"] {
+[data-theme= dark] {
   --primary-indigo: #818CF8;
   --indigo-hover: #6366F1;
   --mint-accent: #34D399;
@@ -36,29 +33,28 @@
   --text-muted: #9CA3AF;
   --card-hover-shadow: rgba(129, 140, 248, 0.25);
 
-  /* Dark Mesh Gradients */
   --mesh-1: rgba(99, 102, 241, 0.25);
   --mesh-2: rgba(16, 185, 129, 0.15);
   --mesh-3: rgba(79, 70, 229, 0.22);
 }
 
-[data-surface-mode="transparent"] .signup-container {
+[data-surface-mode=transparent] .settings-container {
   background: rgba(var(--card-bg-rgb), 0.36);
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.24), 0 0 0 1px var(--border-subtle);
 }
 
-[data-surface-mode="transparent"] .role-card {
+[data-surface-mode=transparent] .settings-section {
   background-color: rgba(var(--card-bg-rgb), 0.32);
 }
 
-[data-surface-mode="transparent"] .role-card::after {
-  background-color: rgba(var(--card-bg-rgb), 0.22);
+[data-surface-mode=transparent] .settings-item:hover {
+  background-color: rgba(var(--card-bg-rgb), 0.45);
 }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
+  :root:not([data-theme=light]) {
     --primary-indigo: #818CF8;
     --indigo-hover: #6366F1;
     --mint-accent: #34D399;
@@ -77,9 +73,9 @@
   }
 }
 
-/* ==========================================
-   Core Layout & Vista Mesh Background
-   ========================================== */
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -89,9 +85,9 @@ body {
   align-items: center;
   justify-content: center;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  
+
   background-color: var(--bg-canvas);
-  background-image: 
+  background-image:
     radial-gradient(at 15% 15%, var(--mesh-1) 0px, transparent 55%),
     radial-gradient(at 85% 85%, var(--mesh-2) 0px, transparent 55%),
     radial-gradient(at 50% 50%, var(--mesh-3) 0px, transparent 70%);
@@ -99,225 +95,283 @@ body {
   transition: background-color 0.3s ease;
 }
 
-/* The Central Floating Frosted Glass Box */
-.signup-container {
+/* ==========================================
+   Settings Container (Frosted Glass Card)
+   ========================================== */
+
+.settings-container {
   position: relative;
   width: 100%;
-  max-width: 520px;
-  padding: 40px;
+  max-width: 600px;
+  margin: 24px;
+  padding: 48px 40px;
   background: rgba(var(--card-bg-rgb), 0.88);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid var(--border-subtle);
   border-radius: 32px;
-  box-shadow: 
-    0 25px 50px -12px rgba(0, 0, 0, 0.35), 
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.35),
     0 0 0 1px var(--border-subtle);
-  z-index: 10;
   transition: background 0.3s ease, border-color 0.3s ease;
-  animation: page-fade-in 0.5s ease both;
+  animation: settings-fade-in 0.5s ease both;
 }
 
-.signup-container.page-exit {
-  animation: page-fade-out 0.32s ease forwards;
-}
-
-@keyframes page-fade-in {
+@keyframes settings-fade-in {
   from { opacity: 0; transform: translateY(18px) scale(0.98); }
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-@keyframes page-fade-out {
-  from { opacity: 1; transform: translateY(0) scale(1); }
-  to { opacity: 0; transform: translateY(-18px) scale(0.98); }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .signup-container,
-  .signup-container.page-exit {
+  .settings-container {
     animation: none;
   }
 }
 
-/* Header Text Layout */
-.signup-header {
+/* ==========================================
+   Settings Header
+   ========================================== */
+
+.settings-header {
   text-align: center;
   margin-bottom: 32px;
 }
 
-.signup-header h1 {
+.settings-header h1 {
   font-size: 28px;
   font-weight: 800;
   color: var(--text-main);
-  margin-bottom: 8px;
+  margin: 0 0 8px 0;
   letter-spacing: -0.5px;
 }
 
-.signup-header p {
+.settings-header p {
   color: var(--text-muted);
   font-size: 15px;
   margin: 0;
 }
 
-/* Role Cards Grid Container */
-.role-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-bottom: 32px;
-}
+/* ==========================================
+   Settings Sections
+   ========================================== */
 
-/* Log In Link: centered, follows current theme/mode text color */
-.log-in-link {
-  text-align: center;
-  margin-bottom: 16px;
-}
-
-.log-in-link a {
-  color: var(--text-muted);
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.log-in-link a:hover {
-  color: var(--primary-indigo);
-}
-
-/* Individual Role Card Style */
-.role-card {
-  position: relative;
+.settings-section {
+  margin-bottom: 24px;
   background-color: var(--card-bg);
   border-radius: 20px;
-  padding: 20px 24px;
-  cursor: pointer;
+  border: 1px solid var(--border-subtle);
   overflow: hidden;
-  border: 2px solid var(--border-subtle);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  z-index: 1;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-.role-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 22px -8px rgba(0, 0, 0, 0.22);
+.settings-section:last-child {
+  margin-bottom: 0;
 }
 
-/* The Rotating Clockwise Glow Border on Hover */
-.role-card::before {
-  content: '';
-  position: absolute;
-  inset: -3px;
-  border-radius: 22px;
-  background: transparent;
-  z-index: -2;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.role-card:hover::before {
-  opacity: 0;
-  animation: none;
-}
-
-.role-card::after {
-  content: '';
-  position: absolute;
-  inset: 2px;
-  background-color: var(--card-bg);
-  border-radius: 18px;
-  z-index: -1;
-  transition: background-color 0.3s ease;
-}
-
-.role-icon {
-  font-size: 26px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  background-color: var(--border-subtle);
-  border-radius: 14px;
-  flex-shrink: 0;
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.role-icon svg {
-  display: block;
-}
-
-.gear-option-btn span {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.role-content h3 {
-  font-size: 17px;
+.settings-section-title {
+  font-size: 13px;
   font-weight: 700;
-  color: var(--text-main);
-  margin: 0 0 4px 0;
-}
-
-.role-content p {
-  font-size: 14px;
   color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 16px 20px 8px 20px;
   margin: 0;
 }
 
-/* Selected State */
-.role-card.selected {
-  border-color: var(--primary-indigo);
-  background-color: rgba(99, 102, 241, 0.1);
-  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
-}
+/* ==========================================
+   Settings Items (Rows)
+   ========================================== */
 
-.role-card.selected::before {
-  opacity: 0;
-}
-
-.role-card.selected .role-icon {
-  background-color: var(--primary-indigo);
-  color: #FFFFFF;
-}
-
-/* The Full Pill-Shaped Action Button */
-.pill-button {
+.settings-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border: none;
+  background: none;
   width: 100%;
+  text-align: left;
+  font-family: inherit;
+  color: inherit;
+}
+
+.settings-item:hover {
+  background-color: rgba(99, 102, 241, 0.06);
+}
+
+[data-theme=dark] .settings-item:hover {
+  background-color: rgba(129, 140, 248, 0.08);
+}
+
+.settings-item + .settings-item {
+  border-top: 1px solid var(--border-subtle);
+}
+
+.settings-item-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+  min-width: 0;
+}
+
+.settings-item-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--primary-indigo);
-  color: #FFFFFF;
+  flex-shrink: 0;
+  font-size: 20px;
+}
+
+.settings-item-icon.indigo {
+  background-color: rgba(99, 102, 241, 0.12);
+  color: var(--primary-indigo);
+}
+
+.settings-item-icon.mint {
+  background-color: rgba(16, 185, 129, 0.12);
+  color: var(--mint-accent);
+}
+
+.settings-item-icon.amber {
+  background-color: rgba(245, 158, 11, 0.12);
+  color: #F59E0B;
+}
+
+.settings-item-icon.rose {
+  background-color: rgba(244, 63, 94, 0.12);
+  color: #F43F5E;
+}
+
+.settings-item-icon.sky {
+  background-color: rgba(14, 165, 233, 0.12);
+  color: #0EA5E9;
+}
+
+.settings-item-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.settings-item-label {
+  font-size: 15px;
   font-weight: 600;
-  font-size: 16px;
-  padding: 16px 32px;
-  border-radius: 9999px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
-  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3);
+  color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.pill-button:hover:not(:disabled) {
-  background-color: var(--indigo-hover);
-  box-shadow: 0 6px 18px rgba(99, 102, 241, 0.4);
-}
-
-.pill-button:active:not(:disabled) {
-  transform: scale(0.98);
-}
-
-.pill-button:disabled {
-  background-color: var(--border-subtle);
+.settings-item-desc {
+  font-size: 13px;
   color: var(--text-muted);
-  box-shadow: none;
-  cursor: not-allowed;
-  transform: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.settings-item-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.settings-item-value {
+  font-size: 14px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.settings-chevron {
+  color: var(--text-muted);
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+}
+
+.settings-item:hover .settings-chevron {
+  opacity: 1;
+}
+
+/* ==========================================
+   Toggle Switch
+   ========================================== */
+
+.toggle-switch {
+  position: relative;
+  width: 48px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: var(--border-subtle);
+  border-radius: 9999px;
+  transition: background-color 0.3s ease;
+}
+
+.toggle-slider::before {
+  content: '';
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  left: 3px;
+  bottom: 3px;
+  background-color: #FFFFFF;
+  border-radius: 50%;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-switch input:checked + .toggle-slider {
+  background-color: var(--primary-indigo);
+}
+
+.toggle-switch input:checked + .toggle-slider::before {
+  transform: translateX(20px);
+}
+
+.toggle-switch input:focus-visible + .toggle-slider {
+  outline: 2px solid var(--primary-indigo);
+  outline-offset: 2px;
+}
+
+/* ==========================================
+   Danger Zone / Logout
+   ========================================== */
+
+.settings-item.danger .settings-item-label {
+  color: #F43F5E;
+}
+
+.settings-item.danger:hover {
+  background-color: rgba(244, 63, 94, 0.06);
+}
+
+[data-theme=dark] .settings-item.danger:hover {
+  background-color: rgba(244, 63, 94, 0.1);
+}
+
+.settings-item.danger .settings-item-icon {
+  background-color: rgba(244, 63, 94, 0.12);
+  color: #F43F5E;
 }
 
 /* ==========================================
@@ -375,12 +429,17 @@ body {
   height: 46px;
 }
 
+.gear-option-btn span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .gear-main-btn:hover {
   transform: rotate(45deg) scale(1.08);
 }
 
-/* Light mode: indigo hover */
-:root:not([data-theme="dark"]) .gear-option-btn:hover {
+:root:not([data-theme=dark]) .gear-option-btn:hover {
   background-color: var(--primary-indigo);
   border-color: var(--primary-indigo);
   color: #fff;
@@ -388,8 +447,7 @@ body {
   transform: scale(1.12);
 }
 
-/* Dark mode: mint hover */
-[data-theme="dark"] .gear-option-btn:hover {
+[data-theme=dark] .gear-option-btn:hover {
   background-color: var(--mint-accent);
   border-color: var(--mint-accent);
   color: #fff;
@@ -397,7 +455,33 @@ body {
   transform: scale(1.12);
 }
 
-[data-surface-mode="transparent"] .gear-main-btn,
-[data-surface-mode="transparent"] .gear-option-btn {
+[data-surface-mode=transparent] .gear-main-btn,
+[data-surface-mode=transparent] .gear-option-btn {
   background: rgba(var(--card-bg-rgb), 0.3);
+}
+
+/* ==========================================
+   Responsive
+   ========================================== */
+
+@media (max-width: 520px) {
+  .settings-container {
+    padding: 32px 20px;
+    margin: 16px;
+    border-radius: 24px;
+  }
+
+  .settings-header h1 {
+    font-size: 24px;
+  }
+
+  .settings-item {
+    padding: 12px 16px;
+  }
+
+  .settings-item-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+  }
 }
